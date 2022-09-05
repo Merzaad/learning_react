@@ -6,7 +6,7 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
   const { data } = useEthData()
-  const price = data.data.market_price_usd || 'no data'
+  const price = data.market_price_usd || 'no data'
   React.useEffect(() => {
     console.log('render')
   })
