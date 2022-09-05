@@ -5,7 +5,7 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-  const { data } = useEthData()
+  const { data, status, fetch } = useEthData()
   const price = data.market_price_usd || 'no data'
   React.useEffect(() => {
     console.log('render')
@@ -25,7 +25,18 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
       </div>
       <div className='card'>
-       {price}
+        {price}
+        <br />
+        {status === 'fetching' && 'fetching'}
+      </div>
+      <div className='card'>
+        <button
+          disabled={status === 'fetching'}
+          style={{ opacity: status === 'fetching' ? 0.5 : 1 }}
+          onClick={() => fetch()}
+        >
+          fetch
+        </button>
       </div>
     </div>
   )
