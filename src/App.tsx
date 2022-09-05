@@ -6,9 +6,7 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
   const { data } = useEthData()
-  React.useEffect(() => {
-    console.log(data.data)
-  }, [data])
+  const price = data.data.market_price_usd || 'no data'
   React.useEffect(() => {
     console.log('render')
   })
@@ -25,6 +23,9 @@ function App() {
       <h1>Vite + React</h1>
       <div className='card'>
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
+      </div>
+      <div className='card'>
+       {price}
       </div>
     </div>
   )
