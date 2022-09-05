@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import { useEthData } from './modules/testHook'
+import { useEthData } from './hooks/useEthData'
 import './App.css'
 
 function App() {
