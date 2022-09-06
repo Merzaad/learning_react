@@ -1,13 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-type EthData = {
-  data: any
-  context: any
-  status: string
-}
-interface EthDataHook extends EthData {
-  fetch: () => void
-}
+import { EthData, EthDataHook } from '../types/eth'
 const useEthData = (): EthDataHook => {
   const [ethData, setEthData] = React.useState<EthData>({ data: {}, context: {}, status: 'initial' })
   const fetch = async () => {

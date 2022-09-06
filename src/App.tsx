@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, createContext } from 'react'
 import reactLogo from './assets/react.svg'
 import { useEthData } from './hooks/useEthData'
+import ethContext from './context/ethContext'
+import FetchButton from './components/fetchButton'
 import './App.css'
 
 function App() {
@@ -29,18 +31,11 @@ function App() {
         <br />
         {status === 'fetching' && 'fetching'}
       </div>
-      <div className='card'>
-        <button
-          disabled={status === 'fetching'}
-          style={{ opacity: status === 'fetching' ? 0.5 : 1 }}
-          onClick={() => fetch()}
-        >
-          fetch
-        </button>
-      </div>
+      <ethContext.Provider value={{ status, fetch }}>
+        <FetchButton />
+      </ethContext.Provider>
     </div>
   )
 }
 
 export default App
-
