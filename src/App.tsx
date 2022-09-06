@@ -3,14 +3,17 @@ import reactLogo from './assets/react.svg'
 import { useEthData } from './hooks/useEthData'
 import ethContext from './context/ethContext'
 import FetchButton from './components/fetchButton'
+import useTestMemo from './hooks/useTestMemo'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
   const { data, status, fetch } = useEthData()
   const price = data.market_price_usd || 'no data'
+  const testPrice = useTestMemo()
   React.useEffect(() => {
-    console.log('render')
+    console.log('app rendered')
+    console.log(`memo : ${testPrice}`)
   })
   return (
     <div className='App'>
