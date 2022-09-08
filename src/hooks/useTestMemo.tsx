@@ -1,5 +1,4 @@
 import React from 'react'
-import { EthData } from '../types/eth'
 import { useEthData } from './useEthData'
 const useTestMemo = () => {
   const { data } = useEthData()
