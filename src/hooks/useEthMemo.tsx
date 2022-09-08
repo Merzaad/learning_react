@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEthData } from './useEthData'
-const useTestMemo = () => {
+const useEthMemo = () => {
   const { data } = useEthData()
   const price = React.useMemo(() => {
     console.log('memo executed')
@@ -12,4 +12,4 @@ const useTestMemo = () => {
   return price
 }
 
-export default useTestMemo
+export default useEthMemo
