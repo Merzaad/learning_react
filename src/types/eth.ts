@@ -1,7 +1,8 @@
 export type EthData = {
-  data: any
-  context: any
+  data?: any
+  context?: any
   status: string
+  error?: string
 }
 export interface EthDataHook extends EthData {
   fetch: () => void

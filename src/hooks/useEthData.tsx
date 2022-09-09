@@ -3,15 +3,17 @@ import axios from 'axios'
 import { EthData, EthDataHook } from '../types/eth'
 const useEthData = (): EthDataHook => {
   const [ethData, setEthData] = React.useState<EthData>({
-    data: {},
-    context: {},
     status: 'initial',
   })
   const fetch = async () => {
     console.log('fetch executed')
-    // setEthData((prev) => ({...prev, status: 'fetching'}))
-    const response = await axios.get('https://api.blockchair.com/ethereum/stats')
-    if (response.status === 200) setEthData({ ...response.data, status: 'fetched' })
+    setEthData({ status: 'fetching' })
+    try {
+      const response = await axios.get('https://api.blockchair.com/ethereum/stats')
+      setEthData({ ...response.data, status: 'fetched' })
+    } catch (error: any) {
+      setEthData({ error: error.message, status: 'error' })
+    }
   }
   React.useEffect(() => {
     fetch()

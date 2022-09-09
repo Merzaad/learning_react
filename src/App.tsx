@@ -5,10 +5,10 @@ import ethContext from './context/ethContext'
 import FetchButton from './components/fetchButton'
 import './App.css'
 
-function App () {
+function App() {
   const [count, setCount] = useState(0)
-  const { data, status, fetch } = useEthData()
-  const price = data.market_price_usd || 'no data'
+  const { data, status, fetch, error } = useEthData()
+  const price = data?.market_price_usd || status
   React.useEffect(() => {
     console.log('app rendered')
   })
@@ -27,9 +27,9 @@ function App () {
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
       </div>
       <div className="card">
-        {price}
-        <br />
-        {status === 'fetching' && 'fetching'}
+        {price && `ethereum price: ${price}`}
+        {' '}
+        {error}
       </div>
       <ethContext.Provider value={{ status, fetch }}>
         <FetchButton />
