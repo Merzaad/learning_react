@@ -8,10 +8,15 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
   const { data, status, fetch, error } = useEthData()
+  const [activeTab, setActiveTab] = useState(1)
   const price = data?.market_price_usd || status
   React.useEffect(() => {
     console.log('app rendered')
   })
+  React.useEffect(() => {
+    const alert = setTimeout(() => window.alert(activeTab), 1000)
+    return () => clearTimeout(alert)
+  }, [activeTab])
   return (
     <div className="App">
       <div>
@@ -23,17 +28,24 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <div className="card">
+      <div className="box">
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
       </div>
-      <div className="card">
-        {price && `ethereum price: ${price}`}
-        {' '}
-        {error}
+      <div className="box">
+        {price && `ethereum price: ${price}`} {error}
+        <ethContext.Provider value={{ status, fetch }}>
+          <FetchButton />
+        </ethContext.Provider>
       </div>
-      <ethContext.Provider value={{ status, fetch }}>
-        <FetchButton />
-      </ethContext.Provider>
+      <div className="box">
+        <div className="btns">
+          <button onClick={() => setActiveTab(1)}>tab1</button>
+          <button onClick={() => setActiveTab(2)}>tab2</button>
+        </div>
+        <div className="tab">
+          {`active: ${activeTab}`}
+        </div>
+      </div>
     </div>
   )
 }
