@@ -14,7 +14,7 @@ function App() {
     console.log('app rendered')
   })
   React.useEffect(() => {
-    const alert = setTimeout(() => window.alert(activeTab), 1000)
+    const alert = setTimeout(() => console.log(`activetab: ${activeTab}`), 1000)
     return () => clearTimeout(alert)
   }, [activeTab])
   return (
@@ -42,9 +42,7 @@ function App() {
           <button onClick={() => setActiveTab(1)}>tab1</button>
           <button onClick={() => setActiveTab(2)}>tab2</button>
         </div>
-        <div className="tab">
-          {`active: ${activeTab}`}
-        </div>
+        <div className="tab">{`active: ${activeTab}`}</div>
       </div>
     </div>
   )
