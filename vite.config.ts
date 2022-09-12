@@ -6,7 +6,27 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      injectRegister: null,
+      injectRegister: 'inline',
+      includeAssets: ['react.svg', 'vite.svg', 'square.png'],
+      manifestFilename: 'manifest.json',
+      manifest: {
+        short_name: 'reactVite',
+        name: 'reactVite',
+        start_url: '.',
+        display: 'standalone',
+        theme_color: '#000000',
+        background_color: '#ffffff',
+        id: '/',
+        scope: '.',
+        lang: 'en',
+        icons: [
+          {
+            src: 'square.png',
+            type: 'image/png',
+            sizes: '400x400',
+          },
+        ],
+      },
     }),
   ],
 })

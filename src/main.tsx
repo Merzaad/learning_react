@@ -11,5 +11,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 )
 register({
   onSuccess: (registration: any) => console.log('success'),
-  onUpdate: (registration: any) => console.log('update v4')
+  onUpdate: (registration: any) => console.log('update v6'),
 })
