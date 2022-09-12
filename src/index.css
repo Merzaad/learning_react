@@ -33,6 +33,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
 h1 {
