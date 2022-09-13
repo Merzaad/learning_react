@@ -4,6 +4,7 @@ import ethContext from './context/ethContext'
 import FetchButton from './components/fetchButton'
 import Notification from './components/notification'
 import notfContext from './context/notifContext'
+import { register } from './swRegisteration'
 import './App.css'
 
 function App() {
@@ -14,6 +15,17 @@ function App() {
   const price = data?.market_price_usd || status
   React.useEffect(() => {
     console.log('app rendered')
+  })
+  React.useEffect(() => {
+    register({
+      onSuccess: (registration: any) => console.log('success'),
+      onUpdate: (registration: any) => {
+        if (registration && registration.waiting) {
+          registration.waiting.postMessage({ type: 'SKIP_WAITING' })
+        }
+        setUpdate(true)
+      },
+    })
   })
   React.useEffect(() => {
     const alert = setTimeout(() => console.log(`activetab: ${activeTab}`), 1000)
@@ -30,7 +42,7 @@ function App() {
             <img src="/react.svg" className="logo react" alt="React logo" />
           </a>
         </div>
-        <h1>Vite + React</h1>
+        <h1>viteReact v0.0.0</h1>
         <button onClick={() => setUpdate(true)}>UPDATE</button>
         <div className="box">
           <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
@@ -49,7 +61,7 @@ function App() {
           <div className="tab">{`active: ${activeTab}`}</div>
         </div>
       </div>
-      <notfContext.Provider value={{ update, close: () => setUpdate(false) }}>
+      <notfContext.Provider value={{ update, close: () => window.location.reload() }}>
         {update && <Notification />}
       </notfContext.Provider>
     </div>
