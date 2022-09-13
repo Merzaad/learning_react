@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import ethContext from '../../context/ethContext'
+import './index.css'
 const Button = () => {
   const { status, fetch } = useContext(ethContext)
   return (

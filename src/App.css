@@ -64,39 +64,10 @@
   border-radius: 10px;
   margin: 10px auto 10px auto;
 }
-.notif {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100%;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 2;
-}
-.notif .paper {
-  width: 30%;
-  height: 20vh;
-  background-color: rgba(41, 41, 41, 0.95);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 12px;
-}
+
 .blur {
   filter: blur(2px);
 }
-.notif .paper button {
-  color: rgb(0, 154, 165);
-  width: 50%;
-  user-select: none;
-  -webkit-user-select: none;
-}
-.notif .paper button:hover {
-  color: rgb(179, 0, 75);
-}
-
 @media screen and (max-width: 960px) {
   .notif .paper {
     width: 80%;

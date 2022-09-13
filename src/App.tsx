@@ -42,8 +42,7 @@ function App() {
             <img src="/react.svg" className="logo react" alt="React logo" />
           </a>
         </div>
-        <h1>viteReact v0.0.0</h1>
-        <button onClick={() => setUpdate(true)}>UPDATE</button>
+        <h1>viteReact v0.0.1</h1>
         <div className="box">
           <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
         </div>

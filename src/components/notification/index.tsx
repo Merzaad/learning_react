@@ -10,7 +10,7 @@ const Notification = () => {
   return (
     <div className="notif">
       <div className="paper">
-        <button onClick={() => close()}>close</button>
+        <button onClick={() => close()}>update</button>
       </div>
     </div>
   )
