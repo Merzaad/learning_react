@@ -2,12 +2,13 @@ import React, { useContext } from 'react'
 import ethContext from '../../context/ethContext'
 import './index.css'
 const Button = () => {
+  // to do css
   const { status, fetch } = useContext(ethContext)
   return (
     <button
       disabled={status === 'fetching'}
-      style={{ opacity: status === 'fetching' ? 0.5 : 1 }}
       onClick={() => fetch()}
+      className={status === 'fetching' ? 'opacity05' : 'opacity1'}
     >
       fetch
     </button>
