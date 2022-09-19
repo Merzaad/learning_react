@@ -9,6 +9,8 @@ const useEthData = (): EthDataHook => {
     console.log('fetch executed')
     setEthData({ status: 'fetching' })
     try {
+      // test multiple awaits in try catch
+      // await axios.get('https://api.blockchair.com/ethere123um/stats')
       const response = await axios.get('https://api.blockchair.com/ethereum/stats')
       setEthData({ ...response.data, status: 'fetched' })
     } catch (error: any) {
