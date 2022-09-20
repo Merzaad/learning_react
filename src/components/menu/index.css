@@ -1,10 +1,16 @@
 .Menu {
     position: fixed;
     top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 50px;
     background-color: rgba(121, 250, 240, 0.208);
     backdrop-filter: blur(4px);
+}
+.Menu button {
+    height: 75%;
 }
 
 
@@ -12,6 +18,6 @@
     .Menu{
         bottom: 0;
         top: auto;
-        height: 50px;
+        height: 75px;
     }
 }
