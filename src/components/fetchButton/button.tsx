@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import ethContext from '../../context/ethContext'
+import coinContext from '../../context/coinContext'
 import './index.css'
 const Button = () => {
   // to do css
-  const { status, fetch } = useContext(ethContext)
+  const { status, fetch } = useContext(coinContext)
   return (
     <button
       disabled={status === 'fetching'}

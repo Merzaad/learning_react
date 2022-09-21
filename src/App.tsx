@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useCoinData } from './hooks/useCoinData'
-import ethContext from './context/ethContext'
+import coinContext from './context/coinContext'
 import FetchButton from './components/fetchButton'
 import Notification from './components/notification'
 import notfContext from './context/notifContext'
@@ -62,15 +62,15 @@ function App() {
           </div>
           <div className="box">
             {ethPrice && `ethereum price: ${ethPrice}`} {ethError}
-            <ethContext.Provider value={{ status, fetch: ethFetch }}>
+            <coinContext.Provider value={{ status: ethStatus, fetch: ethFetch }}>
               <FetchButton />
-            </ethContext.Provider>
+            </coinContext.Provider>
           </div>
           <div className="box">
             {btcPrice && `bitcoin price: ${btcPrice}`} {btcError}
-            <ethContext.Provider value={{ status, fetch: btcFetch }}>
+            <coinContext.Provider value={{ status: btcStatus, fetch: btcFetch }}>
               <FetchButton />
-            </ethContext.Provider>
+            </coinContext.Provider>
           </div>
           <div className="box">
             <div className="btns">
