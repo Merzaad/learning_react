@@ -6,6 +6,7 @@ import Notification from './components/notification'
 import notfContext from './context/notifContext'
 import Menu from './components/menu'
 import { register } from './swRegisteration'
+import { isTest, changeTest } from './modules/module'
 import './App.css'
 
 function App() {
@@ -44,6 +45,9 @@ function App() {
     const alert = setTimeout(() => console.log(`activetab: ${activeTab}`), 1000)
     return () => clearTimeout(alert)
   }, [activeTab])
+  const printTest = () => {
+    setTimeout(() => console.log(isTest), 2000)
+  }
   return (
     <>
       <div className="App">
@@ -78,6 +82,10 @@ function App() {
               <button onClick={() => setActiveTab(2)}>tab2</button>
             </div>
             <div className="tab">{`active: ${activeTab}`}</div>
+          </div>
+          <div className="box">
+            <button onClick={printTest}>print</button>
+            <button onClick={() => changeTest()}>change</button>
           </div>
         </div>
         <notfContext.Provider value={{ update, close: () => window.location.reload() }}>
