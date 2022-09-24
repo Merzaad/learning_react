@@ -1,8 +1,8 @@
 import React from 'react'
-import { EthData, EthDataHook } from '../types/eth'
+import { CoinData, CoinDataHook } from '../types/coin'
 import { Test } from '../api/api'
-const useCoinData = (coin: string): EthDataHook => {
-  const [ethData, setEthData] = React.useState<EthData>({
+const useCoinData = (coin: string): CoinDataHook => {
+  const [ethData, setEthData] = React.useState<CoinData>({
     status: 'initial',
   })
   console.log(coin)

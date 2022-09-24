@@ -1,7 +1,7 @@
 import { createContext } from 'react'
-import { EthContext } from '../types/eth'
+import { CoinContext } from '../types/coin'
 
-const coinContext = createContext<EthContext>({
+const coinContext = createContext<CoinContext>({
   status: 'initial',
   fetch: () => null,
 })

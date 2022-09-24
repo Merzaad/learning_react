@@ -1,13 +1,13 @@
-export type EthData = {
+export type CoinData = {
   data?: any
   context?: any
   status: string
   error?: string
 }
-export interface EthDataHook extends EthData {
+export interface CoinDataHook extends CoinData {
   fetch: () => void
 }
-export type EthContext = {
+export type CoinContext = {
   status: string
   fetch: () => void
 }
