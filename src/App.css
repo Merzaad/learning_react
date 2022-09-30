@@ -6,7 +6,7 @@
 .App{
  max-width: 700px;
  margin: auto;
- padding-top: 50px;
+ padding: 50px 0px;
 }
 .header{
   text-align: center;
@@ -86,8 +86,7 @@
 }
 @media screen and (max-width: 960px) {
   .App{
-    padding-top: 0px;
-    padding-bottom: 50px;
+    padding: 10px 0px 90px 0px;
    }
   .notif .paper {
     width: 80%;

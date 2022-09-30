@@ -59,7 +59,7 @@ function App() {
               <img src="/react.svg" className="logo react" alt="React logo" />
             </a>
           </div>
-          <h1 className="header">reactVite v0.0.5</h1>
+          <h1 className="header">reactVite v0.0.6</h1>
           <div className="box">
             <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
           </div>
