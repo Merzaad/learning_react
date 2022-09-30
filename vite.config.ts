@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+import { themeColor } from './src/styles/theme'
 
 export default defineConfig({
   plugins: [
@@ -14,7 +15,7 @@ export default defineConfig({
         name: 'reactVite',
         start_url: '.',
         display: 'standalone',
-        theme_color: '#000000',
+        theme_color: themeColor,
         background_color: '#ffffff',
         id: '/',
         scope: '.',

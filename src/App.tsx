@@ -83,6 +83,7 @@ function App() {
             <div className="tab" style={{ background: activeTab === 2 ? '#595260' : '#3F4E4F' }} />
           </div>
           <div className="box">
+            from module:
             {moduleLog}
             <button onClick={printModuleValue}>print</button>
             <button onClick={() => increaseModuleValue()}>+1</button>
