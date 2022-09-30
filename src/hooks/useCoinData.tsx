@@ -1,6 +1,6 @@
 import React from 'react'
 import { CoinData, CoinDataHook } from '../types/coin'
-import { Test } from '../api/api'
+import { api } from '../api/api'
 const useCoinData = (coin: string): CoinDataHook => {
   const [ethData, setEthData] = React.useState<CoinData>({
     status: 'initial',
@@ -11,11 +11,13 @@ const useCoinData = (coin: string): CoinDataHook => {
     setEthData({ status: 'fetching' })
     try {
       // await axios.get('https://api.blockchair.com/ethere123um/stats')
-      const response = await Test.get(`https://api.blockchair.com/${coin}/stats`)
+      const response = await api.get(`https://api.blockchair.com/${coin}/stats`)
       setEthData({ ...response.data, status: 'fetched' })
+      console.log(response.data.test.test)
     } catch (error: any) {
-      setEthData({ error: error.response?.statusText, status: 'error' })
+      setEthData({ error: error.response?.statusText || error.message, status: 'error' })
     }
+    // typeError + await test
   }
   React.useEffect(() => {
     fetch()

@@ -1,13 +1,13 @@
 import axios from 'axios'
 
-const Test = axios.create({})
+const api = axios.create({})
 
-let testCalled = false
-Test.interceptors.request.use((config) => {
-  console.log(`test: ${testCalled}`)
+let is = false
+api.interceptors.request.use((config) => {
+  console.log(`interceptors tets: ${is}`)
   if (config.url?.includes('bitcoin')) {
-    testCalled = true
+    is = true
   }
   return config
 })
-export { Test }
+export { api }

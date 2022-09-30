@@ -6,7 +6,7 @@ import Notification from './components/notification'
 import notfContext from './context/notifContext'
 import Menu from './components/menu'
 import { register } from './swRegisteration'
-import { isTest, changeTest } from './modules/module'
+import { moduleValue, increaseModuleValue } from './modules/module'
 import './App.css'
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
   } = useCoinData('bitcoin')
   const [update, setUpdate] = useState(false)
   const [activeTab, setActiveTab] = useState(1)
+  const [moduleLog, setModuleLog] = useState(moduleValue)
   const ethPrice = ethDara?.market_price_usd || ethStatus
   const btcPrice = btcData?.market_price_usd || btcStatus
   React.useEffect(() => {
@@ -45,9 +46,7 @@ function App() {
     const alert = setTimeout(() => console.log(`activetab: ${activeTab}`), 1000)
     return () => clearTimeout(alert)
   }, [activeTab])
-  const printTest = () => {
-    setTimeout(() => console.log(isTest), 2000)
-  }
+  const printModuleValue = () => setModuleLog(moduleValue)
   return (
     <>
       <div className="App">
@@ -81,11 +80,12 @@ function App() {
               <button onClick={() => setActiveTab(1)}>tab1</button>
               <button onClick={() => setActiveTab(2)}>tab2</button>
             </div>
-            <div className="tab">{`active: ${activeTab}`}</div>
+            <div className="tab" style={{ background: activeTab === 2 ? '#595260' : '#3F4E4F' }} />
           </div>
           <div className="box">
-            <button onClick={printTest}>print</button>
-            <button onClick={() => changeTest()}>change</button>
+            {moduleLog}
+            <button onClick={printModuleValue}>print</button>
+            <button onClick={() => increaseModuleValue()}>+1</button>
           </div>
         </div>
         <notfContext.Provider value={{ update, close: () => window.location.reload() }}>

@@ -1,4 +1,5 @@
-let isTest = 'initial'
-
-const changeTest = () => (isTest = 'changed')
-export { isTest, changeTest }
+let moduleValue = 0
+const increaseModuleValue = (): void => {
+  moduleValue += 1
+}
+export { moduleValue, increaseModuleValue }
