@@ -1,12 +1,13 @@
 import axios from 'axios'
 
-const api = axios.create({})
+const api = axios.create({
+  timeout: 10000,
+})
 
-let is = false
 api.interceptors.request.use((config) => {
-  console.log(`interceptors tets: ${is}`)
-  if (config.url?.includes('bitcoin')) {
-    is = true
+  if (config.url?.includes('ethereum')) {
+    throw new Error('axios interceptor')
+    // config.url = config.url.replace('ethereum', 'bitcoin')
   }
   return config
 })

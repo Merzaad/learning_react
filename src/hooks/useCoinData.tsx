@@ -13,11 +13,10 @@ const useCoinData = (coin: string): CoinDataHook => {
       // await axios.get('https://api.blockchair.com/ethere123um/stats')
       const response = await api.get(`https://api.blockchair.com/${coin}/stats`)
       setEthData({ ...response.data, status: 'fetched' })
-      console.log(response.data.test.test)
+      // console.log(response.data.test.test)
     } catch (error: any) {
       setEthData({ error: error.response?.statusText || error.message, status: 'error' })
     }
-    // typeError + await test
   }
   React.useEffect(() => {
     fetch()
