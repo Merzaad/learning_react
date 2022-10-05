@@ -14,7 +14,6 @@ function App() {
   })
   React.useEffect(() => {
     register({
-      onSuccess: (registration: any) => console.log('success'),
       onUpdate: (registration: any) => {
         if (registration && registration.waiting) {
           registration.waiting.postMessage({ type: 'SKIP_WAITING' })
