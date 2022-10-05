@@ -40,7 +40,7 @@ const Home = () => {
             <img src="/react.svg" className="logo react" alt="React logo" />
           </a>
         </div>
-        <h1 className="header">reactVite v0.0.7</h1>
+        <h1 className="header">reactVite v0.0.8</h1>
         <div className="box">
           <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
         </div>
