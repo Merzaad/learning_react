@@ -5,6 +5,7 @@ import Layout from './components/layout'
 import { register } from './swRegisteration'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './components/app'
+import X from './components/x'
 
 function App() {
   const [update, setUpdate] = React.useState(false)
@@ -28,7 +29,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="/x" element={<>HELLO</>} />
+            <Route path="/x" element={<X />} />
           </Route>
         </Routes>
       </BrowserRouter>
