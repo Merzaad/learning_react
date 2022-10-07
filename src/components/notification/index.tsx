@@ -4,10 +4,7 @@ import notifContext from '../../context/notifContext'
 
 const Notification = () => {
   // todo css
-  const { update, close } = React.useContext(notifContext)
-  React.useEffect(() => {
-    console.log(`notif rendered update: ${update}`)
-  })
+  const { close } = React.useContext(notifContext)
   return (
     <div className="notif">
       <div className="paper">

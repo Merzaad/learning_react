@@ -10,9 +10,6 @@ import X from './components/x'
 function App() {
   const [update, setUpdate] = React.useState(false)
   React.useEffect(() => {
-    console.log('app rendered')
-  })
-  React.useEffect(() => {
     register({
       onUpdate: (registration: any) => {
         if (registration && registration.waiting) {

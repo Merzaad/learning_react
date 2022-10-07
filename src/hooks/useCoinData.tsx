@@ -5,9 +5,7 @@ const useCoinData = (coin: string): CoinDataHook => {
   const [ethData, setEthData] = React.useState<CoinData>({
     status: 'initial',
   })
-  console.log(coin)
   const fetch = async () => {
-    console.log('fetch executed')
     setEthData({ status: 'fetching' })
     try {
       // await axios.get('https://api.blockchair.com/ethere123um/stats')
@@ -21,9 +19,6 @@ const useCoinData = (coin: string): CoinDataHook => {
   React.useEffect(() => {
     fetch()
   }, [])
-  React.useEffect(() => {
-    console.log('hook rendered')
-  })
   return { ...ethData, fetch }
 }
 export { useCoinData }
