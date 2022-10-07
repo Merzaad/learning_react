@@ -8,6 +8,8 @@ import { moduleValue, increaseModuleValue } from '../../modules/module'
 
 const Home = () => {
   const [count, setCount] = React.useState(0)
+  const [activeTab, setActiveTab] = React.useState(1)
+  const [moduleLog, setModuleLog] = React.useState(moduleValue)
   const {
     data: ethDara,
     status: ethStatus,
@@ -20,14 +22,12 @@ const Home = () => {
     fetch: btcFetch,
     error: btcError,
   } = useCoinData('bitcoin')
-  const [activeTab, setActiveTab] = React.useState(1)
-  const [moduleLog, setModuleLog] = React.useState(moduleValue)
   const ethPrice = ethDara?.market_price_usd || ethStatus
   const btcPrice = btcData?.market_price_usd || btcStatus
-  React.useEffect(() => {
+  /* React.useEffect(() => {
     const alert = setTimeout(() => console.log(`activetab: ${activeTab}`), 1000)
     return () => clearTimeout(alert)
-  }, [activeTab])
+  }, [activeTab]) */
   const printModuleValue = () => setModuleLog(moduleValue)
   return (
     <div className="App">
