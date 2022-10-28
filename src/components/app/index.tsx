@@ -2,6 +2,7 @@ import * as React from 'react'
 import './index.css'
 import coinContext from '../../context/coinContext'
 import FetchButton from '../../components/fetchButton'
+import RefButton from '../refButton'
 
 import { useCoinData } from '../../hooks/useCoinData'
 import { moduleValue, increaseModuleValue } from '../../modules/module'
@@ -10,6 +11,7 @@ const Home = () => {
   const [count, setCount] = React.useState(0)
   const [activeTab, setActiveTab] = React.useState(1)
   const [moduleLog, setModuleLog] = React.useState(moduleValue)
+  const refBtn = React.useRef<HTMLButtonElement>(null)
   const {
     data: ethDara,
     status: ethStatus,
@@ -69,8 +71,15 @@ const Home = () => {
           <button onClick={printModuleValue}>print</button>
           <button onClick={() => increaseModuleValue()}>+1</button>
         </div>
+        <div className="box">
+          <RefButton
+            ref={refBtn}
+            onClick={() => {
+              if (refBtn.current) refBtn.current.style.padding = '20px'
+            }}
+          />
+        </div>
       </div>
-
     </div>
   )
 }
