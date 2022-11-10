@@ -6,6 +6,7 @@ import RefButton from '../refButton'
 
 import { useCoinData } from '../../hooks/useCoinData'
 import { moduleValue, increaseModuleValue } from '../../modules/module'
+import MiddleSticky from '../middleSticky'
 
 const Home = () => {
   const [count, setCount] = React.useState(0)
@@ -24,8 +25,16 @@ const Home = () => {
     fetch: btcFetch,
     error: btcError,
   } = useCoinData('bitcoin')
+  const {
+    data: dgeData,
+    status: dgeStatus,
+    fetch: dgeFetch,
+    error: dgeError,
+  } = useCoinData('dogecoin')
   const ethPrice = ethDara?.market_price_usd || ethStatus
   const btcPrice = btcData?.market_price_usd || btcStatus
+  const dgePrice = dgeData?.market_price_usd || btcStatus
+
   /* React.useEffect(() => {
     const alert = setTimeout(() => console.log(`activetab: ${activeTab}`), 1000)
     return () => clearTimeout(alert)
@@ -42,7 +51,7 @@ const Home = () => {
             <img src="/react.svg" className="logo react" alt="React logo" />
           </a>
         </div>
-        <h1 className="header">reactVite v0.0.8</h1>
+        <h1 className="header">reactVite v0.0.81</h1>
         <div className="box">
           <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
         </div>
@@ -52,9 +61,16 @@ const Home = () => {
             <FetchButton />
           </coinContext.Provider>
         </div>
+        <MiddleSticky />
         <div className="box">
           {btcPrice && `bitcoin price: ${btcPrice}`} {btcError}
           <coinContext.Provider value={{ status: btcStatus, fetch: btcFetch }}>
+            <FetchButton />
+          </coinContext.Provider>
+        </div>
+        <div className="box">
+          {dgePrice && `bitcoin price: ${dgePrice}`} {dgeError}
+          <coinContext.Provider value={{ status: dgeStatus, fetch: dgeFetch }}>
             <FetchButton />
           </coinContext.Provider>
         </div>
