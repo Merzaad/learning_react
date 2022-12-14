@@ -41,7 +41,7 @@ const X = () => {
     const { value } = event.target
     setQuote(Number(value), ratio)
   }
-  const switchHandler = () => {
+  const switchHandler = (): void => {
     setRatio(1 / ratio)
     setAsset(Number(input.quote), 1 / ratio)
   }
