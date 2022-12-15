@@ -1,33 +1,39 @@
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-input[type=number] {
-    -moz-appearance:textfield;
+input[type='number'] {
+  -moz-appearance: textfield;
 }
 .X {
-    min-height: 100vh;
-    max-width: 700px;
-    margin: auto;
-    padding: 50px 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px
-  }
-  .input{
-    color: black;
-    width: 360px;
-  }
-  .error{
-    border-color: red;
-  }
-  .help{
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    width: 360px;
-  }
+  min-height: 100vh;
+  max-width: 700px;
+  margin: auto;
+  padding: 50px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.input {
+  color: black;
+  width: 360px;
+}
+.switch:disabled {
+  opacity: 0.2;
+}
+.select {
+  color: black;
+}
+.error {
+  border-color: red;
+}
+.help {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 360px;
+}
