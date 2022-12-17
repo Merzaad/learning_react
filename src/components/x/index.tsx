@@ -3,7 +3,12 @@ import './index.css'
 import axios from 'axios'
 
 const X = () => {
-  const [details, setDetails] = React.useState({ ratio: 1, minAmount: 0 })
+  const [details, setDetails] = React.useState({
+    ratio: 1,
+    minAmount: 0,
+    assetPrecision: 0,
+    quotePrecision: 0,
+  })
   const [input, setInput] = React.useState({
     asset: '',
     quote: '',
@@ -11,29 +16,56 @@ const X = () => {
     status: 'initial',
   })
   const [pair, setPair] = React.useState({ asset: 'USDT', quote: 'BTC' })
-  const [coins] = React.useState(['BTC', 'DOGE', 'ETH', 'USDT'])
+  const [coins] = React.useState(['BTC', 'DOGE', 'ETH', 'USDT', 'IRT'])
   const fetching = input.status === 'fetching'
   const { ratio, minAmount } = details
-  const setAsset = (value: number, testRatio: number, testMinAmount: number): void => {
-    if (value >= 0) {
+  const removeExtraDecimals = (value: number, precision: number) => {
+    const strValue = String(value)
+    const decIndex = strValue.indexOf('.')
+    if (decIndex !== -1) {
+      if (precision === 0) {
+        return strValue.slice(0, decIndex + precision)
+      } else {
+        return strValue.slice(0, decIndex + precision + 1)
+      }
+    } else {
+      return strValue
+    }
+  }
+  const setAsset = (
+    value: string,
+    testRatio: number,
+    testMinAmount: number,
+    assetPrecision: number,
+    quotePrecision: number
+  ): void => {
+    const numValue = Number(value)
+    if (numValue >= 0) {
       setInput({
-        asset: String(value),
-        quote: String(value * testRatio),
+        asset: removeExtraDecimals(numValue, assetPrecision),
+        quote: String(removeExtraDecimals(numValue * testRatio, quotePrecision)),
         error: {
-          hasError: value !== 0 && value < testMinAmount,
+          hasError: numValue !== 0 && numValue < testMinAmount,
           errorMessage: `< ${testMinAmount}`,
         },
         status: '',
       })
     }
   }
-  const setQuote = (value: number, testRatio: number, testMinAmount: number): void => {
-    if (value >= 0) {
+  const setQuote = (
+    value: string,
+    testRatio: number,
+    testMinAmount: number,
+    assetPrecision: number,
+    quotePrecision: number
+  ): void => {
+    const numValue = Number(value)
+    if (numValue >= 0) {
       setInput({
-        asset: String(value / testRatio),
-        quote: String(value),
+        asset: String(removeExtraDecimals(numValue / testRatio, assetPrecision)),
+        quote: removeExtraDecimals(numValue, quotePrecision),
         error: {
-          hasError: value !== 0 && value / testRatio < testMinAmount,
+          hasError: numValue !== 0 && numValue / testRatio < testMinAmount,
           errorMessage: `< ${testMinAmount}`,
         },
         status: '',
@@ -42,11 +74,11 @@ const X = () => {
   }
   const assetChangeHanler: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const { value } = event.target
-    setAsset(Number(value), ratio, minAmount)
+    setAsset(value, ratio, minAmount, details.assetPrecision, details.quotePrecision)
   }
   const quoteChangeHanler: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const { value } = event.target
-    setQuote(Number(value), ratio, minAmount)
+    setQuote(value, ratio, minAmount, details.assetPrecision, details.quotePrecision)
   }
   const switchHandler = (): void => {
     setPair({ asset: pair.quote, quote: pair.asset })
@@ -59,15 +91,21 @@ const X = () => {
     const { value } = event.target
     setPair({ ...pair, quote: value })
   }
+
   React.useEffect(() => {
     const fetchPrice = async () => {
       try {
         const { data } = await axios.get(
           `https://api.twox.ir/api/currencies/prices/latest/${pair.asset}/${pair.quote}`
         )
-        const { price: ratio, minAmount } = data
-        setDetails({ ratio, minAmount })
-        setAsset(Number(input.asset), ratio, minAmount)
+        const { price: ratio, minAmount, baseAsset, quoteAsset } = data
+        setDetails({
+          ratio,
+          minAmount,
+          assetPrecision: baseAsset.assetPrecision,
+          quotePrecision: quoteAsset.assetPrecision,
+        })
+        setAsset(input.asset, ratio, minAmount, baseAsset.assetPrecision, quoteAsset.assetPrecision)
       } catch (error) {
         console.warn(error)
       }
@@ -84,7 +122,6 @@ const X = () => {
           <input
             className="input"
             value={fetching ? '' : input.asset}
-            type="number"
             onChange={assetChangeHanler}
             placeholder={fetching ? 'fetching' : 'asset'}
             disabled={fetching}
@@ -111,7 +148,6 @@ const X = () => {
         <div>
           <input
             className="input"
-            type="number"
             value={fetching ? '' : input.quote}
             onChange={quoteChangeHanler}
             placeholder={fetching ? 'fetching' : 'quote'}
@@ -133,12 +169,14 @@ const X = () => {
             )}
           </select>
         </div>
-        <div className="help">
-          error: {fetching ? '' : input.error.hasError && input.error.errorMessage}
-          <br />
-          price: {fetching ? 'fetching' : `${ratio} ${pair.asset}${pair.quote}`}
-          <br />
-          status: {input.status}
+        <div className="box">
+          <div className="help">
+            error: {fetching ? '' : input.error.hasError && input.error.errorMessage}
+            <br />
+            price: {fetching ? 'fetching' : `${ratio} ${pair.asset}${pair.quote}`}
+            <br />
+            status: {input.status}
+          </div>
         </div>
       </div>
     </div>

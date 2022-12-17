@@ -20,7 +20,6 @@ input[type='number'] {
 }
 .input {
   color: black;
-  width:90%;
 }
 .switch:disabled {
   opacity: 0.2;
@@ -35,7 +34,7 @@ input[type='number'] {
   display: flex;
   justify-content: start;
   align-items: center;
-  width: 70%;
+  width: 100%;
 }
 
 @media (max-width: 960px) {
