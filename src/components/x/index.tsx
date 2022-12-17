@@ -4,52 +4,49 @@ import { moduleValue, increaseModuleValue } from '../../modules/module'
 import axios from 'axios'
 
 const X = () => {
-  const [state, setState] = React.useState(moduleValue)
-  const [ratio, setRatio] = React.useState(1.5)
+  const [ratio, setRatio] = React.useState(1)
   const [input, setInput] = React.useState({
     asset: '',
     quote: '',
     error: { hasError: false, errorMessage: '' },
     status: 'initial',
   })
+  const [minAmount, setMinAmount] = React.useState(1)
   const [pair, setPair] = React.useState({ asset: 'USDT', quote: 'BTC' })
   const [coins] = React.useState(['BTC', 'DOGE', 'ETH', 'USDT'])
   const fetching = input.status === 'fetching'
-  const increaseHandler = () => {
-    increaseModuleValue()
-    setState(moduleValue)
-  }
-  const setAsset = (value: number, testRatio: number): void => {
+  const setAsset = (value: number, testRatio: number, testMinAmount: number): void => {
     if (value >= 0) {
       setInput({
         asset: String(value),
         quote: String(value / testRatio),
-        error: { hasError: value !== 0 && value < 100, errorMessage: '<100' },
+        error: { hasError: value !== 0 && value < testMinAmount, errorMessage: `< ${testMinAmount}` },
         status: '',
       })
     }
   }
-  const setQuote = (value: number, testRatio: number): void => {
+  const setQuote = (value: number, testRatio: number, testMinAmount: number): void => {
     if (value >= 0) {
       setInput({
         asset: String(value * testRatio),
         quote: String(value),
-        error: { hasError: value !== 0 && value * testRatio < 100, errorMessage: '<100' },
+        error: {
+          hasError: value !== 0 && value * testRatio < testMinAmount,
+          errorMessage: `< ${testMinAmount}`,
+        },
         status: '',
       })
     }
   }
   const assetChangeHanler: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const { value } = event.target
-    setAsset(Number(value), ratio)
+    setAsset(Number(value), ratio, minAmount)
   }
   const quoteChangeHanler: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const { value } = event.target
-    setQuote(Number(value), ratio)
+    setQuote(Number(value), ratio, minAmount)
   }
   const switchHandler = (): void => {
-    setRatio(1 / ratio)
-    setAsset(Number(input.quote), 1 / ratio)
     setPair({ asset: pair.quote, quote: pair.asset })
   }
   const selectAssetHandler: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
@@ -63,29 +60,24 @@ const X = () => {
   React.useEffect(() => {
     const fetchPrice = async () => {
       try {
-        setInput({ ...input, status: 'fetching' })
         const { data } = await axios.get(
-          `https://api.twox.ir/api/currencies/prices/latest/${pair.quote}/${pair.asset}`
+          `https://api.twox.ir/api/currencies/prices/latest/${pair.asset}/${pair.quote}`
         )
         setRatio(data.price)
-        setInput({ ...input, status: '' })
+        setMinAmount(data.minAmount)
+        setAsset(Number(input.asset), data.price, data.minAmount)
       } catch (error) {
         console.warn(error)
       }
     }
     fetchPrice()
+    return () => {
+      setInput({ ...input, status: 'fetching' })
+      setMinAmount(1)
+    }
   }, [pair])
   return (
     <div className="X">
-      <div className="box">
-        state: {state}
-        <button type="button" onClick={increaseHandler}>
-          +1
-        </button>
-        <button type="button" onClick={() => window.alert(`module: ${moduleValue}`)}>
-          print
-        </button>
-      </div>
       <div className="box">
         <div>
           <input
@@ -96,7 +88,12 @@ const X = () => {
             placeholder={fetching ? 'fetching' : 'asset'}
             disabled={fetching}
           />
-          <select value={pair.asset} className="select" onChange={selectAssetHandler}>
+          <select
+            value={pair.asset}
+            className="select"
+            onChange={selectAssetHandler}
+            disabled={fetching}
+          >
             {coins.map(
               (coin) =>
                 coin !== pair.quote && (
@@ -119,7 +116,12 @@ const X = () => {
             placeholder={fetching ? 'fetching' : 'quote'}
             disabled={fetching}
           />
-          <select value={pair.quote} className="select" onChange={selectQuoteHandler}>
+          <select
+            value={pair.quote}
+            className="select"
+            onChange={selectQuoteHandler}
+            disabled={fetching}
+          >
             {coins.map(
               (coin) =>
                 coin !== pair.asset && (
@@ -131,9 +133,9 @@ const X = () => {
           </select>
         </div>
         <div className="help">
-          error: {input.error.hasError && input.error.errorMessage}
+          error: {fetching ? '' : input.error.hasError && input.error.errorMessage}
           <br />
-          price: {fetching ? 'fetching' : `${ratio} ${pair.quote}${pair.asset}`}
+          price: {fetching ? 'fetching' : `${ratio} ${pair.asset}${pair.quote}`}
           <br />
           status: {input.status}
         </div>
