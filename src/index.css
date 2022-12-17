@@ -65,6 +65,7 @@ button:focus-visible {
   border: 1px solid gray;
   border-radius: 20px;
   padding: 20px 5px;
+  width: 100%;
 }
 .box .btns {
   display: flex;

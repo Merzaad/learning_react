@@ -9,7 +9,7 @@ input[type='number'] {
 }
 .X {
   min-height: 100vh;
-  max-width: 700px;
+  width: 700px;
   margin: auto;
   padding: 50px 0px;
   display: flex;
@@ -20,7 +20,7 @@ input[type='number'] {
 }
 .input {
   color: black;
-  width: 360px;
+  width:90%;
 }
 .switch:disabled {
   opacity: 0.2;
@@ -35,5 +35,11 @@ input[type='number'] {
   display: flex;
   justify-content: start;
   align-items: center;
-  width: 360px;
+  width: 70%;
+}
+
+@media (max-width: 960px) {
+  .X{
+    width: 340px;
+  }
 }
