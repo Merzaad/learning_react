@@ -1,26 +1,28 @@
 import * as React from 'react'
 import './index.css'
-import { moduleValue, increaseModuleValue } from '../../modules/module'
 import axios from 'axios'
 
 const X = () => {
-  const [ratio, setRatio] = React.useState(1)
+  const [details, setDetails] = React.useState({ ratio: 1, minAmount: 0 })
   const [input, setInput] = React.useState({
     asset: '',
     quote: '',
     error: { hasError: false, errorMessage: '' },
     status: 'initial',
   })
-  const [minAmount, setMinAmount] = React.useState(1)
   const [pair, setPair] = React.useState({ asset: 'USDT', quote: 'BTC' })
   const [coins] = React.useState(['BTC', 'DOGE', 'ETH', 'USDT'])
   const fetching = input.status === 'fetching'
+  const { ratio, minAmount } = details
   const setAsset = (value: number, testRatio: number, testMinAmount: number): void => {
     if (value >= 0) {
       setInput({
         asset: String(value),
-        quote: String(value / testRatio),
-        error: { hasError: value !== 0 && value < testMinAmount, errorMessage: `< ${testMinAmount}` },
+        quote: String(value * testRatio),
+        error: {
+          hasError: value !== 0 && value < testMinAmount,
+          errorMessage: `< ${testMinAmount}`,
+        },
         status: '',
       })
     }
@@ -28,10 +30,10 @@ const X = () => {
   const setQuote = (value: number, testRatio: number, testMinAmount: number): void => {
     if (value >= 0) {
       setInput({
-        asset: String(value * testRatio),
+        asset: String(value / testRatio),
         quote: String(value),
         error: {
-          hasError: value !== 0 && value * testRatio < testMinAmount,
+          hasError: value !== 0 && value / testRatio < testMinAmount,
           errorMessage: `< ${testMinAmount}`,
         },
         status: '',
@@ -63,9 +65,9 @@ const X = () => {
         const { data } = await axios.get(
           `https://api.twox.ir/api/currencies/prices/latest/${pair.asset}/${pair.quote}`
         )
-        setRatio(data.price)
-        setMinAmount(data.minAmount)
-        setAsset(Number(input.asset), data.price, data.minAmount)
+        const { price: ratio, minAmount } = data
+        setDetails({ ratio, minAmount })
+        setAsset(Number(input.asset), ratio, minAmount)
       } catch (error) {
         console.warn(error)
       }
@@ -73,7 +75,6 @@ const X = () => {
     fetchPrice()
     return () => {
       setInput({ ...input, status: 'fetching' })
-      setMinAmount(1)
     }
   }, [pair])
   return (
