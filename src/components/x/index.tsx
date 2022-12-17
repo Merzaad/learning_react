@@ -19,12 +19,12 @@ const X = () => {
   const [coins] = React.useState(['BTC', 'DOGE', 'ETH', 'USDT', 'IRT'])
   const fetching = input.status === 'fetching'
   const { ratio, minAmount } = details
-  const removeExtraDecimals = (value: number, precision: number) => {
+  const removeExtraDecimals = (value: string, precision: number) => {
     const strValue = String(value)
     const decIndex = strValue.indexOf('.')
     if (decIndex !== -1) {
       if (precision === 0) {
-        return strValue.slice(0, decIndex + precision)
+        return strValue.slice(0, decIndex)
       } else {
         return strValue.slice(0, decIndex + precision + 1)
       }
@@ -42,8 +42,8 @@ const X = () => {
     const numValue = Number(value)
     if (numValue >= 0) {
       setInput({
-        asset: removeExtraDecimals(numValue, assetPrecision),
-        quote: String(removeExtraDecimals(numValue * testRatio, quotePrecision)),
+        asset: removeExtraDecimals(value, assetPrecision),
+        quote: removeExtraDecimals(String(numValue * testRatio), quotePrecision),
         error: {
           hasError: numValue !== 0 && numValue < testMinAmount,
           errorMessage: `< ${testMinAmount}`,
@@ -62,8 +62,8 @@ const X = () => {
     const numValue = Number(value)
     if (numValue >= 0) {
       setInput({
-        asset: String(removeExtraDecimals(numValue / testRatio, assetPrecision)),
-        quote: removeExtraDecimals(numValue, quotePrecision),
+        asset: removeExtraDecimals(String(numValue / testRatio), assetPrecision),
+        quote: removeExtraDecimals(value, quotePrecision),
         error: {
           hasError: numValue !== 0 && numValue / testRatio < testMinAmount,
           errorMessage: `< ${testMinAmount}`,
