@@ -3,7 +3,9 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
+* {
+  color: black;
+}
 input[type='number'] {
   -moz-appearance: textfield;
 }
@@ -36,9 +38,12 @@ input[type='number'] {
   align-items: center;
   width: 100%;
 }
+select option {
+  color: black;
+}
 
 @media (max-width: 960px) {
-  .X{
+  .X {
     width: 340px;
   }
 }
