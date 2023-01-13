@@ -46,7 +46,7 @@ const X = () => {
         quote: removeExtraDecimals(String(numValue * testRatio), quotePrecision),
         error: {
           hasError: numValue !== 0 && numValue < testMinAmount,
-          errorMessage: `< ${testMinAmount}`,
+          errorMessage: `minimum amount ${testMinAmount}`,
         },
         status: '',
       })
@@ -66,7 +66,7 @@ const X = () => {
         quote: removeExtraDecimals(value, quotePrecision),
         error: {
           hasError: numValue !== 0 && numValue / testRatio < testMinAmount,
-          errorMessage: `< ${testMinAmount}`,
+          errorMessage: `minimum amount  ${testMinAmount}`,
         },
         status: '',
       })
@@ -91,25 +91,30 @@ const X = () => {
     const { value } = event.target
     setPair({ ...pair, quote: value })
   }
-
-  React.useEffect(() => {
-    const fetchPrice = async () => {
-      try {
-        const { data } = await axios.get(
-          `https://api.twox.ir/api/currencies/prices/latest/${pair.asset}/${pair.quote}`
-        )
-        const { price: ratio, minAmount, baseAsset, quoteAsset } = data
-        setDetails({
-          ratio,
-          minAmount,
-          assetPrecision: baseAsset.assetPrecision,
-          quotePrecision: quoteAsset.assetPrecision,
-        })
-        setAsset(input.asset, ratio, minAmount, baseAsset.assetPrecision, quoteAsset.assetPrecision)
-      } catch (error) {
-        console.warn(error)
-      }
+  const setMinumumAmount = (): void =>
+    setAsset(String(minAmount), ratio, minAmount, details.assetPrecision, details.quotePrecision)
+  const fetchPrice = async () => {
+    try {
+      const { data } = await axios.get(
+        `https://api.twox.ir/api/currencies/prices/latest/${pair.asset}/${pair.quote}`
+      )
+      const { price: ratio, minAmount, baseAsset, quoteAsset } = data
+      setDetails({
+        ratio,
+        minAmount,
+        assetPrecision: baseAsset.assetPrecision,
+        quotePrecision: quoteAsset.assetPrecision,
+      })
+      setAsset(input.asset, ratio, minAmount, baseAsset.assetPrecision, quoteAsset.assetPrecision)
+    } catch (error) {
+      console.warn(error)
     }
+  }
+  const refetch = () => {
+    setInput({ ...input, status: 'fetching' })
+    fetchPrice()
+  }
+  React.useEffect(() => {
     fetchPrice()
     return () => {
       setInput({ ...input, status: 'fetching' })
@@ -117,65 +122,87 @@ const X = () => {
   }, [pair])
   return (
     <div className="X">
-      <div className="box">
-        <div>
-          <input
-            className="input"
-            value={fetching ? '' : input.asset}
-            onChange={assetChangeHanler}
-            placeholder={fetching ? 'fetching' : 'asset'}
-            disabled={fetching}
-          />
-          <select
-            value={pair.asset}
-            className="select"
-            onChange={selectAssetHandler}
-            disabled={fetching}
-          >
-            {coins.map(
-              (coin) =>
-                coin !== pair.quote && (
-                  <option value={coin} key={`asset ${coin}`}>
-                    {coin}
-                  </option>
-                )
-            )}
-          </select>
-        </div>
-        <button type="button" onClick={switchHandler} disabled={fetching} className="switch">
-          switch
-        </button>
-        <div>
-          <input
-            className="input"
-            value={fetching ? '' : input.quote}
-            onChange={quoteChangeHanler}
-            placeholder={fetching ? 'fetching' : 'quote'}
-            disabled={fetching}
-          />
-          <select
-            value={pair.quote}
-            className="select"
-            onChange={selectQuoteHandler}
-            disabled={fetching}
-          >
-            {coins.map(
-              (coin) =>
-                coin !== pair.asset && (
-                  <option value={coin} key={`asset ${coin}`}>
-                    {coin}
-                  </option>
-                )
-            )}
-          </select>
-        </div>
-        <div className="box">
-          <div className="help">
-            error: {fetching ? '' : input.error.hasError && input.error.errorMessage}
-            <br />
-            price: {fetching ? 'fetching' : `${ratio} ${pair.asset}${pair.quote}`}
-            <br />
-            status: {input.status}
+      <div className="background">
+        {' '}
+        <div className="main">
+          {' '}
+          <div className="inputs">
+            <input
+              className="input"
+              value={fetching ? '' : input.asset}
+              onChange={assetChangeHanler}
+              placeholder={fetching ? 'fetching' : 'asset'}
+              disabled={fetching}
+            />
+            <select
+              value={pair.asset}
+              className="select"
+              onChange={selectAssetHandler}
+              disabled={fetching}
+            >
+              {coins.map(
+                (coin) =>
+                  coin !== pair.quote && (
+                    <option value={coin} key={`asset ${coin}`}>
+                      {coin}
+                    </option>
+                  )
+              )}
+            </select>
+          </div>
+          <div className="menu">
+            <button
+              type="button"
+              onClick={switchHandler}
+              disabled={fetching}
+              className="menuButton"
+            >
+              switch
+            </button>
+            <button type="button" onClick={refetch} disabled={fetching} className="menuButton">
+              refetch
+            </button>
+            <button
+              type="button"
+              onClick={setMinumumAmount}
+              disabled={fetching}
+              className="menuButton"
+            >
+              minimum
+            </button>
+          </div>
+          <div className="inputs">
+            <input
+              className="input"
+              value={fetching ? '' : input.quote}
+              onChange={quoteChangeHanler}
+              placeholder={fetching ? 'fetching' : 'quote'}
+              disabled={fetching}
+            />
+            <select
+              value={pair.quote}
+              className="select"
+              onChange={selectQuoteHandler}
+              disabled={fetching}
+            >
+              {coins.map(
+                (coin) =>
+                  coin !== pair.asset && (
+                    <option value={coin} key={`asset ${coin}`}>
+                      {coin}
+                    </option>
+                  )
+              )}
+            </select>
+          </div>
+          <div className="box">
+            <div className="help">
+              error: {fetching ? '' : input.error.hasError && input.error.errorMessage}
+              <br />
+              price: {fetching ? 'fetching' : `${ratio} ${pair.asset}${pair.quote}`}
+              <br />
+              status: {input.status}
+            </div>
           </div>
         </div>
       </div>
