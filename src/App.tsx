@@ -7,6 +7,7 @@ import { register } from './swRegisteration'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './components/app'
 import X from './components/x'
+import TestImportTime from './test/TestImportTime'
 
 function App() {
   // eslint-disable-next-line no-unused-vars
@@ -28,6 +29,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="/x" element={<X />} />
+            <Route path="/TestImportTime" element={<TestImportTime />} />
           </Route>
         </Routes>
       </BrowserRouter>
