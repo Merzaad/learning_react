@@ -42,7 +42,7 @@ const X = () => {
     quotePrecision: number
   ): void => {
     const numValue = Number(value)
-    if (numValue >= 0) {
+    if (numValue > 0) {
       setInput({
         asset: removeExtraDecimals(value, assetPrecision),
         quote: removeExtraDecimals(String(numValue * testRatio), quotePrecision),
@@ -68,7 +68,7 @@ const X = () => {
         quote: removeExtraDecimals(value, quotePrecision),
         error: {
           hasError: numValue !== 0 && numValue / testRatio < testMinAmount,
-          errorMessage: `minimum amount  ${testMinAmount}`,
+          errorMessage: `minimum amount (${testMinAmount})`,
         },
         status: '',
       })
