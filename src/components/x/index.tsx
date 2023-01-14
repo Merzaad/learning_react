@@ -217,8 +217,9 @@ const X = () => {
               <br />
               price: {fetching ? 'fetching' : `${ratio} ${pair.asset}${pair.quote}`}
               <br />
-              status: {'todo'}
+              status: {fetching ? 'fetching' : 'fetched'}
             </div>
+            <span style={{ fontSize: 7 }}>v0.0.1</span>
           </div>
         </div>
       </div>
