@@ -1,8 +1,10 @@
 import * as React from 'react'
 import './index.css'
 import axios from 'axios'
+import { themeColor } from '../../styles/theme'
 
 const X = () => {
+  const [fetching, setFetching] = React.useState(false)
   const [details, setDetails] = React.useState({
     ratio: 1,
     minAmount: 0,
@@ -13,13 +15,11 @@ const X = () => {
     asset: '',
     quote: '',
     error: { hasError: false, errorMessage: '' },
-    status: 'initial',
   })
   const assetInputRef = React.useRef<any>()
   const quoteInputRef = React.useRef<any>()
   const [pair, setPair] = React.useState({ asset: 'USDT', quote: 'BTC' })
   const [coins] = React.useState(['BTC', 'DOGE', 'ETH', 'USDT', 'IRT'])
-  const fetching = input.status === 'fetching'
   const { ratio, minAmount } = details
   const removeExtraDecimals = (value: string, precision: number) => {
     const strValue = String(value)
@@ -50,7 +50,6 @@ const X = () => {
           hasError: numValue !== 0 && numValue < testMinAmount,
           errorMessage: `minimum amount ${testMinAmount}`,
         },
-        status: '',
       })
     }
   }
@@ -70,7 +69,6 @@ const X = () => {
           hasError: numValue !== 0 && numValue / testRatio < testMinAmount,
           errorMessage: `minimum amount (${testMinAmount})`,
         },
-        status: '',
       })
     }
   }
@@ -97,6 +95,8 @@ const X = () => {
     setAsset(String(minAmount), ratio, minAmount, details.assetPrecision, details.quotePrecision)
   const fetchPrice = async () => {
     try {
+      console.time('api/currencies/prices/latest/')
+      setFetching(true)
       const { data } = await axios.get(
         `https://api.twox.ir/api/currencies/prices/latest/${pair.asset}/${pair.quote}`
       )
@@ -111,16 +111,14 @@ const X = () => {
     } catch (error) {
       console.warn(error)
     }
+    setFetching(false)
+    console.timeEnd('api/currencies/prices/latest/')
   }
   const refetch = () => {
-    setInput({ ...input, status: 'fetching' })
     fetchPrice()
   }
   React.useEffect(() => {
     fetchPrice()
-    return () => {
-      setInput({ ...input, status: 'fetching' })
-    }
   }, [pair])
   return (
     <div className="X">
@@ -214,12 +212,12 @@ const X = () => {
             </select>
           </div>
           <div className="box">
-            <div className="help">
+            <div className="help" style={{ color: themeColor }}>
               error: {fetching ? '' : input.error.hasError && input.error.errorMessage}
               <br />
               price: {fetching ? 'fetching' : `${ratio} ${pair.asset}${pair.quote}`}
               <br />
-              status: {input.status}
+              status: {'todo'}
             </div>
           </div>
         </div>

@@ -11,7 +11,7 @@ const Layout = () => {
         className="Menu"
         style={{
           backdropFilter: 'blur(4px)',
-          backgroundColor: `${themeColor}B3`,
+          backgroundColor: `${themeColor}50`,
           display: 'flex',
           flexWrap: 'wrap',
         }}
@@ -20,7 +20,7 @@ const Layout = () => {
           Reload
         </button>
         <button type="button" onClick={() => navigate('/x')}>
-          x
+          battleground
         </button>
         <button type="button" onClick={() => navigate('/')}>
           home

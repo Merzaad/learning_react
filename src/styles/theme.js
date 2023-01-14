@@ -1,3 +1,3 @@
-const themeColor = '#3F4E4F'
+const themeColor = '#9DF1DF'
 
 export { themeColor }
