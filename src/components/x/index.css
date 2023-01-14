@@ -16,22 +16,21 @@ input[type='number'] {
   min-height: 100vh;
 }
 .background {
-  width: 960px;
   border-radius: 8px;
-  padding: 10px;
+  padding: 7px;
   background: linear-gradient(
     90deg,
-    rgba(96, 255, 255, 0.34) 0%,
-    rgba(18, 247, 255, 0.344) 100%
+    rgba(0, 255, 145, 0.589) 50%,
+    rgba(111, 239, 158, 0.542) 100%
   );
 }
 .main {
   padding: 24px;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.504);
+  box-shadow: 0px 0px 4px rgb(255, 255, 255);
   border-radius: 8px;
   background: #ffffff05;
-  background-color: rgba(211, 211, 211, 0.542);
+  background-color: rgba(133, 133, 133, 0.876);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -79,8 +78,4 @@ select option {
   color: black;
 }
 
-@media (max-width: 960px) {
-  .X {
-    width: 100%;
-  }
-}
+
