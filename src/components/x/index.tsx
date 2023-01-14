@@ -15,6 +15,8 @@ const X = () => {
     error: { hasError: false, errorMessage: '' },
     status: 'initial',
   })
+  const assetInputRef = React.useRef<any>()
+  const quoteInputRef = React.useRef<any>()
   const [pair, setPair] = React.useState({ asset: 'USDT', quote: 'BTC' })
   const [coins] = React.useState(['BTC', 'DOGE', 'ETH', 'USDT', 'IRT'])
   const fetching = input.status === 'fetching'
@@ -123,9 +125,7 @@ const X = () => {
   return (
     <div className="X">
       <div className="background">
-        {' '}
         <div className="main">
-          {' '}
           <div className="inputs">
             <input
               className="input"
@@ -133,6 +133,7 @@ const X = () => {
               onChange={assetChangeHanler}
               placeholder={fetching ? 'fetching' : 'asset'}
               disabled={fetching}
+              ref={assetInputRef}
             />
             <select
               value={pair.asset}
@@ -164,6 +165,22 @@ const X = () => {
             </button>
             <button
               type="button"
+              onClick={() => quoteInputRef.current?.select()}
+              disabled={fetching}
+              className="menuButton"
+            >
+              select quote
+            </button>
+            <button
+              type="button"
+              onClick={() => assetInputRef.current?.select()}
+              disabled={fetching}
+              className="menuButton"
+            >
+              select asset
+            </button>
+            <button
+              type="button"
               onClick={setMinumumAmount}
               disabled={fetching}
               className="menuButton"
@@ -178,6 +195,7 @@ const X = () => {
               onChange={quoteChangeHanler}
               placeholder={fetching ? 'fetching' : 'quote'}
               disabled={fetching}
+              ref={quoteInputRef}
             />
             <select
               value={pair.quote}
