@@ -42,7 +42,7 @@ const X = () => {
     quotePrecision: number
   ): void => {
     const numValue = Number(value)
-    if (numValue > 0) {
+    if (numValue >= 0) {
       setInput({
         asset: removeExtraDecimals(value, assetPrecision),
         quote: removeExtraDecimals(String(numValue * testRatio), quotePrecision),
@@ -95,7 +95,6 @@ const X = () => {
     setAsset(String(minAmount), ratio, minAmount, details.assetPrecision, details.quotePrecision)
   const fetchPrice = async () => {
     try {
-      console.time('api/currencies/prices/latest/')
       setFetching(true)
       const { data } = await axios.get(
         `https://api.twox.ir/api/currencies/prices/latest/${pair.asset}/${pair.quote}`
@@ -112,7 +111,6 @@ const X = () => {
       console.warn(error)
     }
     setFetching(false)
-    console.timeEnd('api/currencies/prices/latest/')
   }
   const refetch = () => {
     fetchPrice()
@@ -219,7 +217,7 @@ const X = () => {
               <br />
               status: {fetching ? 'fetching' : 'fetched'}
             </div>
-            <span style={{ fontSize: 7 }}>v0.0.1</span>
+            <span style={{ fontSize: 7 }}>v0.0.2</span>
           </div>
         </div>
       </div>
