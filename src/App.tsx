@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './components/app'
 import X from './components/x'
 import TestImportTime from './test/TestImportTime'
+import Y from './components/y'
 
 function App() {
   // eslint-disable-next-line no-unused-vars
@@ -29,6 +30,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<X />} />
             <Route path="/x" element={<Home />} />
+            <Route path="/y" element={<Y />} />
             <Route path="/TestImportTime" element={<TestImportTime />} />
           </Route>
         </Routes>
