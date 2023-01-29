@@ -1,0 +1,7 @@
+.reducer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    gap: 50px;
+}
