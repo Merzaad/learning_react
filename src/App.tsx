@@ -28,8 +28,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<X />} />
-            <Route path="/x" element={<Home />} />
+            <Route index element={<Home />} />
+            <Route path="/x" element={<X />} />
             <Route path="/y" element={<Y />} />
             <Route path="/TestImportTime" element={<TestImportTime />} />
           </Route>
