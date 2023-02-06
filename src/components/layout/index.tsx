@@ -7,8 +7,7 @@ const Layout = () => {
   const navigate = useNavigate()
   return (
     <>
-      <div
-        className="Menu"
+      <nav
         style={{
           backdropFilter: 'blur(4px)',
           backgroundColor: `${themeColor}50`,
@@ -16,22 +15,35 @@ const Layout = () => {
           flexWrap: 'wrap',
         }}
       >
-        <button type="button" onClick={() => window.location.reload()}>
-          Reload
-        </button>
-        <button type="button" onClick={() => navigate('/x')}>
-          X
-        </button>
-        <button type="button" onClick={() => navigate('/')}>
-          Z
-        </button>
-        <button type="button" onClick={() => navigate('/t')}>
-          T
-        </button>
-        <button type="button" onClick={() => navigate('/y')}>
-          Y
-        </button>
-      </div>
+        <ul>
+          <li>
+            <button type="button" onClick={() => window.location.reload()}>
+              Reload
+            </button>
+          </li>
+          <li>
+            {' '}
+            <button type="button" onClick={() => navigate('/x')}>
+              X
+            </button>
+          </li>
+          <li>
+            <button type="button" onClick={() => navigate('/')}>
+              Z
+            </button>
+          </li>
+          <li>
+            <button type="button" onClick={() => navigate('/t')}>
+              T
+            </button>
+          </li>
+          <li>
+            <button type="button" onClick={() => navigate('/y')}>
+              Y
+            </button>
+          </li>
+        </ul>
+      </nav>
       <Outlet />
     </>
   )

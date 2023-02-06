@@ -1,22 +1,25 @@
-.Menu {
-    position: fixed;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    gap: 10px;
-    z-index: 2;
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  padding: 10px 0;
+}
+nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+  margin: auto;
+}
+nav ul li button {
     padding: 10px;
 }
-.Menu button {
-    height: 75%;
-}
-
 
 @media screen and (max-width: 960px) {
-    .Menu{
-        bottom: 0;
-        top: auto;
-    }
+  nav {
+    bottom: 0;
+    top: auto;
+  }
 }
