@@ -1,7 +1,7 @@
 import * as React from 'react'
 import './index.css'
 import coinContext from '../../context/coinContext'
-import FetchButton from '../../components/fetchButton'
+import FetchButton from '../fetchButton'
 import RefButton from '../refButton'
 
 import { useCoinData } from '../../hooks/useCoinData'
@@ -51,7 +51,7 @@ const Home = () => {
             <img src="/react.svg" className="logo react" alt="React logo" />
           </a>
         </div>
-        <h1 className="header">reactVite v0.0.83</h1>
+        <h1 className="header">reactVite v0.0.84</h1>
         <div className="box">
           <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
         </div>
@@ -82,7 +82,7 @@ const Home = () => {
           <div className="tab" style={{ background: activeTab === 2 ? '#595260' : '#3F4E4F' }} />
         </div>
         <div className="box">
-          from module:
+          module:
           {moduleLog}
           <button onClick={printModuleValue}>print</button>
           <button onClick={() => increaseModuleValue()}>+1</button>

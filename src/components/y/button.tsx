@@ -15,7 +15,7 @@ export default function Button() {
       <button onClick={clickHandler}>add {oldSatate}</button>
       <button onClick={() => setTriggerCallBack((x) => !x)}>update callback</button>
       <button onClick={() => setState2((x) => x + 1)}>increase {state2}</button>
-      {'memeo prevent re-render when parent renders'}
+      memo
     </>
   )
 }

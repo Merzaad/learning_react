@@ -5,9 +5,9 @@ import Layout from './components/layout'
 // eslint-disable-next-line no-unused-vars
 import { register } from './swRegisteration'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './components/app'
+import Z from './components/z'
 import X from './components/x'
-import TestImportTime from './test/TestImportTime'
+import T from './test/TestImportTime'
 import Y from './components/y'
 
 function App() {
@@ -28,10 +28,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
+            <Route index element={<Z />} />
             <Route path="/x" element={<X />} />
             <Route path="/y" element={<Y />} />
-            <Route path="/TestImportTime" element={<TestImportTime />} />
+            <Route path="/t" element={<T />} />
           </Route>
         </Routes>
       </BrowserRouter>

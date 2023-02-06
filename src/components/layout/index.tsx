@@ -20,16 +20,16 @@ const Layout = () => {
           Reload
         </button>
         <button type="button" onClick={() => navigate('/x')}>
-          x
+          X
         </button>
         <button type="button" onClick={() => navigate('/')}>
-          home
+          Z
         </button>
-        <button type="button" onClick={() => navigate('/TestImportTime')}>
-          test
+        <button type="button" onClick={() => navigate('/t')}>
+          T
         </button>
         <button type="button" onClick={() => navigate('/y')}>
-          y
+          Y
         </button>
       </div>
       <Outlet />

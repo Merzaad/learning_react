@@ -61,11 +61,10 @@ button:focus-visible {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
   border: 1px solid gray;
   border-radius: 20px;
   padding: 20px 5px;
-  width: 100%;
+  width: 99%;
 }
 .box .btns {
   display: flex;
