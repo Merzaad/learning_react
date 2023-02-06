@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { increaseModuleValue, moduleValue } from '../../modules/module'
 import Button from './button'
 import './index.css'
 
@@ -18,9 +19,12 @@ export default function Y() {
       <div className="box">
         {state}
         <button onClick={() => dispatch({ type: 'add' })}>add</button>
+        <div className="box">{preventReRender}</div>
+        parent
       </div>
       <div className="box">
-        {preventReRender}
+        module:{moduleValue}
+        <button onClick={() => increaseModuleValue()}>+1</button>
       </div>
     </div>
   )
