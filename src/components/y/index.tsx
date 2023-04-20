@@ -3,16 +3,16 @@ import { increaseModuleValue, moduleValue } from '../../modules/module'
 import Button from './button'
 import './index.css'
 
-type Reducer = (state: number, action: { type: string }) => number
+type Reducer = (state: any[], action: { type: string; payload: any }) => any[]
 
-const reducer: React.Reducer<number, React.ReducerAction<Reducer>> = (state, action) => {
+const reducer: React.Reducer<any[], React.ReducerAction<Reducer>> = (state, action) => {
   if (action.type === 'add') {
-    return state + 1
+    return [...state, action.payload]
   }
   return state
 }
 export default function Y() {
-  const [state, dispatch] = React.useReducer(reducer, 0)
+  const [state, dispatch] = React.useReducer(reducer, [])
   const [staled, setStaled] = React.useState(0)
   const testStale = 1 + staled
   const testLocalstorageStale = localStorage.getItem('stale') || 0
@@ -28,11 +28,12 @@ export default function Y() {
   React.useEffect(() => {
     localStorage.setItem('stale', String(staled))
   }, [staled])
+  const onAddReducerClick = () => dispatch({ type: 'add', payload: 'x' })
   return (
     <div className="y">
       <div className="box">
         {state}
-        <button onClick={() => dispatch({ type: 'add' })}>add</button>
+        <button onClick={onAddReducerClick}>reducer: add</button>
         <div className="box">{preventReRender}</div>
         parent
       </div>
