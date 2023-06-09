@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import { themeColor } from './src/styles/theme'
 
+/// <reference types="vitest" />
+
 export default defineConfig({
   plugins: [
     react(),
@@ -30,4 +32,5 @@ export default defineConfig({
       },
     }),
   ],
+  test: {},
 })

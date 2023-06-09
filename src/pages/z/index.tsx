@@ -1,12 +1,12 @@
 import * as React from 'react'
 import './index.css'
 import coinContext from '../../context/coinContext'
-import FetchButton from '../fetchButton'
-import RefButton from '../refButton'
+import FetchButton from '../../components/fetchButton'
+import RefButton from '../../components/refButton'
 
 import { useCoinData } from '../../hooks/useCoinData'
 import { moduleValue, increaseModuleValue } from '../../modules/module'
-import MiddleSticky from '../middleSticky'
+import MiddleSticky from '../../components/middleSticky'
 
 const Home = () => {
   const [count, setCount] = React.useState(0)

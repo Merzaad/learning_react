@@ -9,7 +9,7 @@ export default function TestImportTime() {
   const testMain = async () => {
     const time = new Date()
     try {
-      const resoonse = await import('../components/x/index')
+      const resoonse = await import('../pages/x/index')
       console.log(resoonse)
       setExecutionTime({ result: resoonse, time: Number(new Date()) - Number(time) })
     } catch (error) {
