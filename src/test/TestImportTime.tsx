@@ -1,10 +1,13 @@
 import * as React from 'react'
+import testChunk from '../modules/testChunk'
 
 interface initial {
   result?: any
   time?: number
 }
 export default function TestImportTime() {
+  const someData = testChunk()
+  console.log(someData)
   const [executionTime, setExecutionTime] = React.useState<initial>({})
   const testMain = async () => {
     const time = new Date()
