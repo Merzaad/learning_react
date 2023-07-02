@@ -14,12 +14,8 @@ const reducer: React.Reducer<any[], React.ReducerAction<Reducer>> = (state, acti
 export default function Y() {
   const [state, dispatch] = React.useReducer(reducer, [])
   const [staled, setStaled] = React.useState(0)
-  const testStale = 1 + staled
-  const testLocalstorageStale = localStorage.getItem('stale') || 0
   const staledCallback = React.useCallback(() => {
-    const testStale2 = 1 + staled
-    const testLocalstorageStale2 = localStorage.getItem('stale') || 0
-    console.log(testStale, testStale2, testLocalstorageStale, testLocalstorageStale2)
+    console.log(staled, localStorage.getItem('stale'))
   }, [])
   const onStaledIncrease = () => {
     setStaled((prev) => prev + 1)
