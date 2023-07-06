@@ -5,6 +5,7 @@ const S = () => {
   const [state, setState] = React.useState(0)
   const [obj, setObj] = React.useState({ a: 1 })
   const [array, setArray] = React.useState<number[]>([])
+  const [num, setNum] = React.useState(0)
   const [render, setRender] = React.useState(false)
   const ref = React.useRef(0)
   const testUpdatingRefInMemo = React.useMemo(() => {
@@ -25,6 +26,9 @@ const S = () => {
     // [array.length] as dependency
   }, [array])
   React.useEffect(() => {
+    console.log(num)
+  }, [num])
+  React.useEffect(() => {
     console.log('render')
     setTimeout(() => {
       // if mutate, print updated but if new obj set, print captured
@@ -32,6 +36,7 @@ const S = () => {
       // if press render then set mutate then set new, print captured in first + mutate
       console.log(array)
       console.log(obj)
+      console.log(num)
     }, 2000)
   }, [render])
   return (
@@ -73,6 +78,12 @@ const S = () => {
         array : {array}
         <br />
         array.length: {array.length}
+      </div>
+      <div className="box">
+        <button onClick={() => setNum(num)}>set same num</button>
+        <button onClick={() => setNum(num + 1)}>set num + 1</button>
+        <button onClick={() => setNum((prev) => prev)}>set same num</button>
+        num: {num}
       </div>
       <div className="box">
         <button onClick={() => setRender(!render)}>RENDER</button>
