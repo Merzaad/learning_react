@@ -47,6 +47,11 @@ const Layout = () => {
               S
             </button>
           </li>
+          <li>
+            <button type="button" onClick={() => navigate('/a')}>
+              A
+            </button>
+          </li>
         </ul>
       </nav>
       <div className="Outlet">

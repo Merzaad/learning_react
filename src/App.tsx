@@ -9,6 +9,7 @@ import Z from './pages/z'
 import X from './pages/x'
 import S from './pages/s'
 import Y from './pages/y'
+import A from './pages/a'
 
 const Test = React.lazy(() => import('./test/TestImportTime'))
 const TestChunk = React.lazy(() => import('./test/TestChunk'))
@@ -37,6 +38,7 @@ function App() {
             <Route path="/y" element={<Y />} />
             <Route path="/t" element={<Test />} />
             <Route path="/tt" element={<TestChunk />} />
+            <Route path="/a" element={<A />} />
           </Route>
         </Routes>
       </BrowserRouter>

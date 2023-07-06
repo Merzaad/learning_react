@@ -1,0 +1,10 @@
+.A {
+  padding-bottom: 70px;
+}
+input {
+  color: black;
+}
+
+[data-value='2'] {
+  border: 4px solid teal;
+}
