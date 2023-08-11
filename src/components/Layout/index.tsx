@@ -1,7 +1,8 @@
 import React from 'react'
-import { themeColor } from './styles/theme'
+import { themeColor } from '../../styles/theme'
 import { Outlet, useNavigate } from 'react-router-dom'
-import Button from './components/Button'
+import Button from '../Button'
+import './index.css'
 
 const Layout = () => {
   const navigate = useNavigate()

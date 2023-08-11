@@ -1,10 +1,10 @@
 import React from 'react'
-import Notification from './components/Notification'
+import UpdatePopup from './components/UpdatePopup'
 import notfContext from './context/notifContext'
-import Layout from './Layout'
-// eslint-disable-next-line no-unused-vars
+import Layout from './components/Layout'
 import { register } from './swRegisteration'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import './styles/index.css'
 import Z from './pages/z'
 import X from './pages/x'
 import S from './pages/s'
@@ -12,9 +12,8 @@ import Y from './pages/y'
 import A from './pages/a'
 
 function App() {
-  // eslint-disable-next-line no-unused-vars
   const [update, setUpdate] = React.useState(false)
-  /*   React.useEffect(() => {
+  React.useEffect(() => {
     register({
       onUpdate: (registration: any) => {
         if (registration && registration.waiting) {
@@ -23,7 +22,7 @@ function App() {
         setUpdate(true)
       },
     })
-  }) */
+  }, [])
   return (
     <>
       <BrowserRouter>
@@ -38,7 +37,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <notfContext.Provider value={{ update, close: () => window.location.reload() }}>
-        {update && <Notification />}
+        {update && <UpdatePopup />}
       </notfContext.Provider>
     </>
   )

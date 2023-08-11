@@ -37,40 +37,6 @@ h1 {
   line-height: 1.1;
 }
 
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 2;
-  padding: 10px 0;
-  height: 65px;
-}
-nav ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  list-style: none;
-  margin: auto;
-}
-nav ul li button {
-  padding: 10px;
-}
-
-.Outlet {
-  padding-top: 65px;
-}
-
-@media screen and (max-width: 960px) {
-  nav {
-    bottom: 0;
-    top: auto;
-  }
-  .Outlet {
-    padding-top: 0;
-  }
-}
-
 /* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

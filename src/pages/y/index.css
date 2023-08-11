@@ -1,8 +1,5 @@
 .y {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 90vh;
-    gap: 50px;
+  margin: auto;
+  display: grid;
+  max-width: 700px;
 }
