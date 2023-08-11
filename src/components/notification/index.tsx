@@ -1,6 +1,7 @@
 import React from 'react'
 /* import '../../App.css' */
 import notifContext from '../../context/notifContext'
+import Button from '../Button'
 
 const Notification = () => {
   // todo css
@@ -8,7 +9,7 @@ const Notification = () => {
   return (
     <div className="notif">
       <div className="paper">
-        <button onClick={() => close()}>update</button>
+        <Button onClick={() => close()}>update</Button>
       </div>
     </div>
   )

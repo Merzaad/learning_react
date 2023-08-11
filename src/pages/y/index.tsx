@@ -1,7 +1,9 @@
 import * as React from 'react'
 import { increaseModuleValue, moduleValue } from '../../modules/module'
-import Button from './button'
+import Buttons from './buttons'
 import './index.css'
+import Box from '../../components/Box'
+import Button from '../../components/Button'
 
 type Reducer = (state: any[], action: { type: string; payload: any }) => any[]
 
@@ -20,27 +22,27 @@ export default function Y() {
   const onStaledIncrease = () => {
     setStaled((prev) => prev + 1)
   }
-  const preventReRender = React.useMemo(() => <Button />, [])
+  const preventReRender = React.useMemo(() => <Buttons />, [])
   React.useEffect(() => {
     localStorage.setItem('stale', String(staled))
   }, [staled])
   const onAddReducerClick = () => dispatch({ type: 'add', payload: 'x' })
   return (
     <div className="y">
-      <div className="box">
+      <Box>
         {state}
-        <button onClick={onAddReducerClick}>reducer: add</button>
-        <div className="box">{preventReRender}</div>
+        <Button onClick={onAddReducerClick}>reducer: add</Button>
+        <Box>{preventReRender}</Box>
         parent
-      </div>
-      <div className="box">
+      </Box>
+      <Box>
         module:{moduleValue}
-        <button onClick={() => increaseModuleValue()}>+1</button>
-      </div>
-      <div className="box">
-        {staled} <button onClick={onStaledIncrease}>+</button>
-        <button onClick={staledCallback}>print</button>
-      </div>
+        <Button onClick={() => increaseModuleValue()}>+1</Button>
+      </Box>
+      <Box>
+        {staled} <Button onClick={onStaledIncrease}>+</Button>
+        <Button onClick={staledCallback}>print</Button>
+      </Box>
     </div>
   )
 }

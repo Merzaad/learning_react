@@ -1,0 +1,27 @@
+.box {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 20px;
+  padding: 20px 5px;
+  width: 99%;
+}
+.box .btns {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.box .tab {
+  width: 50%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin: 10px auto 10px auto;
+  color: #ffd369;
+}

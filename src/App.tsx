@@ -1,7 +1,7 @@
 import React from 'react'
-import Notification from './components/notification'
+import Notification from './components/Notification'
 import notfContext from './context/notifContext'
-import Layout from './components/layout'
+import Layout from './Layout'
 // eslint-disable-next-line no-unused-vars
 import { register } from './swRegisteration'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -10,9 +10,6 @@ import X from './pages/x'
 import S from './pages/s'
 import Y from './pages/y'
 import A from './pages/a'
-
-const Test = React.lazy(() => import('./test/TestImportTime'))
-const TestChunk = React.lazy(() => import('./test/TestChunk'))
 
 function App() {
   // eslint-disable-next-line no-unused-vars
@@ -36,8 +33,6 @@ function App() {
             <Route path="/x" element={<X />} />
             <Route path="/s" element={<S />} />
             <Route path="/y" element={<Y />} />
-            <Route path="/t" element={<Test />} />
-            <Route path="/tt" element={<TestChunk />} />
             <Route path="/a" element={<A />} />
           </Route>
         </Routes>

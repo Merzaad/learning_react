@@ -1,6 +1,7 @@
 import * as React from 'react'
+import Button from '../../components/Button'
 
-export default function Button() {
+export default function Buttons() {
   const [state, setState] = React.useState(0)
   const [state2, setState2] = React.useState(0)
   const [triggerCallBack, setTriggerCallBack] = React.useState(false)
@@ -12,9 +13,9 @@ export default function Button() {
   return (
     <>
       {state}
-      <button onClick={clickHandler}>add {oldSatate}</button>
-      <button onClick={() => setTriggerCallBack((x) => !x)}>update callback</button>
-      <button onClick={() => setState2((x) => x + 1)}>increase {state2}</button>
+      <Button onClick={clickHandler}>add {oldSatate}</Button>
+      <Button onClick={() => setTriggerCallBack((x) => !x)}>update callback</Button>
+      <Button onClick={() => setState2((x) => x + 1)}>increase {state2}</Button>
       memo
     </>
   )

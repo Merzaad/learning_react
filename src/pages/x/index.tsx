@@ -2,6 +2,7 @@ import * as React from 'react'
 import './index.css'
 import axios from 'axios'
 import { themeColor } from '../../styles/theme'
+import Button from '../../components/Button'
 
 const X = () => {
   const [fetching, setFetching] = React.useState(false)
@@ -148,41 +149,29 @@ const X = () => {
             </select>
           </div>
           <div className="menu">
-            <button
-              type="button"
-              onClick={switchHandler}
-              disabled={fetching}
-              className="menuButton"
-            >
+            <Button onClick={switchHandler} disabled={fetching} className="menuButton">
               switch
-            </button>
-            <button type="button" onClick={refetch} disabled={fetching} className="menuButton">
+            </Button>
+            <Button onClick={refetch} disabled={fetching} className="menuButton">
               refetch
-            </button>
-            <button
-              type="button"
+            </Button>
+            <Button
               onClick={() => quoteInputRef.current?.select()}
               disabled={fetching}
               className="menuButton"
             >
               select quote
-            </button>
-            <button
-              type="button"
+            </Button>
+            <Button
               onClick={() => assetInputRef.current?.select()}
               disabled={fetching}
               className="menuButton"
             >
               select asset
-            </button>
-            <button
-              type="button"
-              onClick={setMinumumAmount}
-              disabled={fetching}
-              className="menuButton"
-            >
+            </Button>
+            <Button onClick={setMinumumAmount} disabled={fetching} className="menuButton">
               minimum
-            </button>
+            </Button>
           </div>
           <div className="inputs">
             <input

@@ -1,9 +1,11 @@
 import * as React from 'react'
 import './index.css'
+import Box from '../../components/Box'
+import Button from '../../components/Button'
 
 const S = () => {
   const [state, setState] = React.useState(0)
-  const [obj, setObj] = React.useState({ a: 1 })
+  let [obj, setObj] = React.useState({ a: 1 })
   const [array, setArray] = React.useState<number[]>([])
   const [num, setNum] = React.useState(0)
   const [render, setRender] = React.useState(false)
@@ -39,15 +41,18 @@ const S = () => {
       console.log(num)
     }, 2000)
   }, [render])
+  React.useEffect(() => {
+    'render'
+  })
   return (
     <div className="S">
-      <div className="box">
+      <Box>
         l
         <input onChange={inputChangeHandler} value={state} />
         {testUpdatingRefInMemo}
-      </div>
-      <div className="box">
-        <button
+      </Box>
+      <Box>
+        <Button
           onClick={() =>
             setObj((prev) => {
               prev.a += 1
@@ -56,38 +61,44 @@ const S = () => {
           }
         >
           mutate prev + 1
-        </button>
-        <button onClick={() => setObj(obj)}>set same obj</button>
-        <button onClick={() => setObj({ a: obj.a + 1 })}>set new obj</button>
+        </Button>
+        <Button onClick={() => setObj(obj)}>set same obj</Button>
+        <Button
+          onClick={() => {
+            obj = { a: 3 }
+          }}
+        >
+          test
+        </Button>
+        <Button onClick={() => setObj({ a: obj.a + 1 })}>set new obj</Button>
         obj.a : {obj.a}
-      </div>
-      <div className="box">
-        <button
+      </Box>
+      <Box>
+        <Button
           onClick={() =>
             setArray((prev) => {
               prev.push(1)
-              console.log(prev)
               return prev
             })
           }
         >
           mutate array push 1
-        </button>
-        <button onClick={() => setArray(array)}>set same array</button>
-        <button onClick={() => setArray([...array, 2])}>set new array push 2</button>
+        </Button>
+        <Button onClick={() => setArray(array)}>set same array</Button>
+        <Button onClick={() => setArray([...array, 2])}>set new array push 2</Button>
         array : {array}
         <br />
         array.length: {array.length}
-      </div>
-      <div className="box">
-        <button onClick={() => setNum(num)}>set same num</button>
-        <button onClick={() => setNum(num + 1)}>set num + 1</button>
-        <button onClick={() => setNum((prev) => prev)}>set same num</button>
+      </Box>
+      <Box>
+        <Button onClick={() => setNum(num)}>set same num</Button>
+        <Button onClick={() => setNum(num + 1)}>set num + 1</Button>
+        <Button onClick={() => setNum((prev) => prev)}>set same num</Button>
         num: {num}
-      </div>
-      <div className="box">
-        <button onClick={() => setRender(!render)}>RENDER</button>
-      </div>
+      </Box>
+      <Box>
+        <Button onClick={() => setRender(!render)}>RENDER</Button>
+      </Box>
     </div>
   )
 }

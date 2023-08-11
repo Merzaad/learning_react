@@ -1,18 +1,18 @@
 import * as React from 'react'
 import './index.css'
 import coinContext from '../../context/coinContext'
-import FetchButton from '../../components/fetchButton'
-import RefButton from '../../components/refButton'
+import FetchButton from './FetchButton'
 
 import { useCoinData } from '../../hooks/useCoinData'
 import { moduleValue, increaseModuleValue } from '../../modules/module'
-import MiddleSticky from '../../components/middleSticky'
+import Box from '../../components/Box'
+import Button from '../../components/Button'
 
 const Home = () => {
   const [count, setCount] = React.useState(0)
   const [activeTab, setActiveTab] = React.useState(1)
   const [moduleLog, setModuleLog] = React.useState(moduleValue)
-  const refBtn = React.useRef<HTMLButtonElement>(null)
+  const refButton = React.useRef<HTMLButtonElement>(null)
   const {
     data: ethDara,
     status: ethStatus,
@@ -40,6 +40,9 @@ const Home = () => {
     return () => clearTimeout(alert)
   }, [activeTab]) */
   const printModuleValue = () => setModuleLog(moduleValue)
+  const onRefButtonClick = () => {
+    if (refButton.current) refButton.current.style.padding = '10px'
+  }
   return (
     <div className="App">
       <div className={`${false && 'blur'}`}>
@@ -52,49 +55,45 @@ const Home = () => {
           </a>
         </div>
         <h1 className="header">reactVite v0.0.84</h1>
-        <div className="box">
-          <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        </div>
-        <div className="box">
+        <Box>
+          <Button onClick={() => setCount((count) => count + 1)}>count is {count}</Button>
+        </Box>
+        <Box>
           {ethPrice && `ethereum price: ${ethPrice}`} {ethError}
           <coinContext.Provider value={{ status: ethStatus, fetch: ethFetch }}>
             <FetchButton />
           </coinContext.Provider>
-        </div>
-        <MiddleSticky />
-        <div className="box">
+        </Box>
+        <Box>
           {btcPrice && `bitcoin price: ${btcPrice}`} {btcError}
           <coinContext.Provider value={{ status: btcStatus, fetch: btcFetch }}>
             <FetchButton />
           </coinContext.Provider>
-        </div>
-        <div className="box">
+        </Box>
+        <Box>
           {dgePrice && `bitcoin price: ${dgePrice}`} {dgeError}
           <coinContext.Provider value={{ status: dgeStatus, fetch: dgeFetch }}>
             <FetchButton />
           </coinContext.Provider>
-        </div>
-        <div className="box">
+        </Box>
+        <Box>
           <div className="btns">
-            <button onClick={() => setActiveTab(1)}>tab1</button>
-            <button onClick={() => setActiveTab(2)}>tab2</button>
+            <Button onClick={() => setActiveTab(1)}>tab1</Button>
+            <Button onClick={() => setActiveTab(2)}>tab2</Button>
           </div>
           <div className="tab" style={{ background: activeTab === 2 ? '#595260' : '#3F4E4F' }} />
-        </div>
-        <div className="box">
+        </Box>
+        <Box>
           module:
           {moduleLog}
-          <button onClick={printModuleValue}>print</button>
-          <button onClick={() => increaseModuleValue()}>+1</button>
-        </div>
-        <div className="box">
-          <RefButton
-            ref={refBtn}
-            onClick={() => {
-              if (refBtn.current) refBtn.current.style.padding = '20px'
-            }}
-          />
-        </div>
+          <Button onClick={printModuleValue}>print</Button>
+          <Button onClick={() => increaseModuleValue()}>+1</Button>
+        </Box>
+        <Box>
+          <Button ref={refButton} onClick={onRefButtonClick}>
+            ref
+          </Button>
+        </Box>
       </div>
     </div>
   )
