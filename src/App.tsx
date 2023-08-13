@@ -10,6 +10,7 @@ import X from './pages/x'
 import S from './pages/s'
 import Y from './pages/y'
 import A from './pages/a'
+import I from './pages/i'
 
 function App() {
   const [update, setUpdate] = React.useState(false)
@@ -33,6 +34,7 @@ function App() {
             <Route path="/s" element={<S />} />
             <Route path="/y" element={<Y />} />
             <Route path="/a" element={<A />} />
+            <Route path="/i" element={<I />} />
           </Route>
         </Routes>
       </BrowserRouter>
