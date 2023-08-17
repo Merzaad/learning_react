@@ -4,7 +4,7 @@ import Box from '../../components/Box'
 import { produce } from 'immer'
 import Button from '../../components/Button'
 
-const I = () => {
+const Immer = () => {
   const [nested, setNested] = React.useState({
     a: { x: 1 },
     b: {
@@ -44,6 +44,7 @@ const I = () => {
       })
     )
   }
+
   React.useEffect(() => {
     console.log('render')
   }, [nested.b.y])
@@ -63,4 +64,4 @@ const I = () => {
     </div>
   )
 }
-export default I
+export default Immer

@@ -1,0 +1,6 @@
+.Context {
+  margin: auto;
+  display: grid;
+  max-width: 700px;
+  gap: 1rem;
+}
