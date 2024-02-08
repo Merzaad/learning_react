@@ -6,5 +6,8 @@ export default function Provider({ children }: { children: React.ReactNode }) {
     a: { x: 1, y: { i: 1 } },
     b: { x: { i: 1 }, y: { i: 1 } },
   })
+  React.useEffect(() => {
+    console.log('Provider render')
+  })
   return <context.Provider value={{ state, setState }}>{children}</context.Provider>
 }

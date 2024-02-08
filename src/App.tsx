@@ -12,6 +12,7 @@ import Y from './pages/y'
 import A from './pages/a'
 import Immer from './pages/Immer'
 import Context from './pages/Context'
+import ChildrenRender from './pages/ChildrenRender'
 
 function App() {
   const [update, setUpdate] = React.useState(false)
@@ -37,6 +38,7 @@ function App() {
             <Route path="/a" element={<A />} />
             <Route path="/immer" element={<Immer />} />
             <Route path="/context" element={<Context />} />
+            <Route path="/childrenRender" element={<ChildrenRender />} />
           </Route>
         </Routes>
       </BrowserRouter>

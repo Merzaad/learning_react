@@ -1,35 +1,27 @@
 nav {
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
   z-index: 2;
   padding: 10px 0;
-  height: 65px;
+  min-height: 65px;
+  display: flex;
 }
 nav ul {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 10px;
   list-style: none;
   margin: auto;
+  padding-inline-start: 0;
 }
 nav ul li button {
   padding: 10px;
 }
 
 .Outlet {
-  padding-top: 75px;
+  padding-top: 5px;
   padding-bottom: 5px;
-}
-
-@media (max-width: 960px) {
-  nav {
-    bottom: 0;
-    top: auto;
-  }
-  .Outlet {
-    padding-top: 5px;
-    padding-bottom: 75px;
-  }
 }

@@ -12,8 +12,6 @@ const Layout = () => {
         style={{
           backdropFilter: 'blur(4px)',
           backgroundColor: `${themeColor}50`,
-          display: 'flex',
-          flexWrap: 'wrap',
         }}
       >
         <ul>
@@ -40,6 +38,9 @@ const Layout = () => {
           </li>
           <li>
             <Button onClick={() => navigate('/context')}>Context</Button>
+          </li>
+          <li>
+            <Button onClick={() => navigate('/childrenRender')}>Children Render</Button>
           </li>
         </ul>
       </nav>
