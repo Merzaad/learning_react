@@ -5,11 +5,11 @@ import Layout from './components/Layout'
 import { register } from './swRegisteration'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './styles/index.css'
-import Z from './pages/z'
-import X from './pages/x'
-import S from './pages/s'
-import Y from './pages/y'
-import A from './pages/a'
+import Home from './pages/home'
+import Convertor from './pages/convertor'
+import Mutation from './pages/mutation'
+import Memoization from './pages/memoization'
+import Key from './pages/key'
 import Immer from './pages/Immer'
 import Context from './pages/Context'
 import ChildrenRender from './pages/ChildrenRender'
@@ -31,11 +31,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Z />} />
-            <Route path="/x" element={<X />} />
-            <Route path="/s" element={<S />} />
-            <Route path="/y" element={<Y />} />
-            <Route path="/a" element={<A />} />
+            <Route index element={<Home />} />
+            <Route path="/convertor" element={<Convertor />} />
+            <Route path="/mutation" element={<Mutation />} />
+            <Route path="/memoization" element={<Memoization />} />
+            <Route path="/key" element={<Key />} />
             <Route path="/immer" element={<Immer />} />
             <Route path="/context" element={<Context />} />
             <Route path="/childrenRender" element={<ChildrenRender />} />

@@ -5,9 +5,9 @@ import Input from './Input'
 import Box from '../../components/Box'
 import Button from '../../components/Button'
 
-const A = () => {
+const Key = () => {
   const [list, setList] = React.useState([{ a: '1' }, { a: '2' }, { a: '3' }, { a: '4' }])
-  const [childrenKey, setChilderKey] = React.useState(1)
+  const [childrenKey, setChildrenKey] = React.useState(1)
   return (
     <div className="A">
       <Box>
@@ -26,9 +26,9 @@ const A = () => {
             </Box>
           ))}
         </Children>
-        <Button onClick={() => setChilderKey(childrenKey + 1)}>reset with key</Button>
+        <Button onClick={() => setChildrenKey(childrenKey + 1)}>reset with key</Button>
       </Box>
     </div>
   )
 }
-export default A
+export default Key

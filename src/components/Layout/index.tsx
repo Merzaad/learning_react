@@ -12,6 +12,7 @@ const Layout = () => {
         style={{
           backdropFilter: 'blur(4px)',
           backgroundColor: `${themeColor}50`,
+          padding: '1rem'
         }}
       >
         <ul>
@@ -19,19 +20,19 @@ const Layout = () => {
             <Button onClick={() => window.location.reload()}>Reload</Button>
           </li>
           <li>
-            <Button onClick={() => navigate('/x')}>X</Button>
+            <Button onClick={() => navigate('/key')}>key</Button>
           </li>
           <li>
-            <Button onClick={() => navigate('/')}>Z</Button>
+            <Button onClick={() => navigate('/')}>home</Button>
           </li>
           <li>
-            <Button onClick={() => navigate('/y')}>Y</Button>
+            <Button onClick={() => navigate('/memoization')}>memoization</Button>
           </li>
           <li>
-            <Button onClick={() => navigate('/s')}>S</Button>
+            <Button onClick={() => navigate('/mutation')}>mutation</Button>
           </li>
           <li>
-            <Button onClick={() => navigate('/a')}>A</Button>
+            <Button onClick={() => navigate('/x')}>convertor</Button>
           </li>
           <li>
             <Button onClick={() => navigate('/immer')}>Immer</Button>

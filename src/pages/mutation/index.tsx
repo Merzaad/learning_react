@@ -3,7 +3,7 @@ import './index.css'
 import Box from '../../components/Box'
 import Button from '../../components/Button'
 
-const S = () => {
+const Mutation = () => {
   const [state, setState] = React.useState(0)
   let [obj, setObj] = React.useState({ a: 1 })
   const [array, setArray] = React.useState<number[]>([])
@@ -102,4 +102,4 @@ const S = () => {
     </div>
   )
 }
-export default S
+export default Mutation
