@@ -5,9 +5,9 @@ import './index.css'
 import Box from '../../components/Box'
 import Button from '../../components/Button'
 
-type Reducer = (state: any[], action: { type: string; payload: any }) => any[]
+type Action = { type: 'add'; payload: any }
 
-const reducer: React.Reducer<any[], React.ReducerAction<Reducer>> = (state, action) => {
+const reducer: React.Reducer<any[], Action> = (state, action) => {
   if (action.type === 'add') {
     return [...state, action.payload]
   }

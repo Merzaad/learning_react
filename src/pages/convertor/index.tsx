@@ -17,8 +17,8 @@ const X = () => {
     quote: '',
     error: { hasError: false, errorMessage: '' },
   })
-  const assetInputRef = React.useRef<any>()
-  const quoteInputRef = React.useRef<any>()
+  const assetInputRef = React.useRef<any>(null)
+  const quoteInputRef = React.useRef<any>(null)
   const [pair, setPair] = React.useState({ asset: 'USDT', quote: 'BTC' })
   const [coins] = React.useState(['BTC', 'DOGE', 'ETH', 'USDT', 'IRT'])
   const { ratio, minAmount } = details
