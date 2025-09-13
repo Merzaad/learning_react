@@ -1,0 +1,7 @@
+.React19 {
+  display: grid;
+  gap: 1rem;
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+}

@@ -12,7 +12,7 @@ const Layout = () => {
         style={{
           backdropFilter: 'blur(4px)',
           backgroundColor: `${themeColor}50`,
-          padding: '1rem'
+          padding: '1rem',
         }}
       >
         <ul>
@@ -32,7 +32,7 @@ const Layout = () => {
             <Button onClick={() => navigate('/mutation')}>mutation</Button>
           </li>
           <li>
-            <Button onClick={() => navigate('/x')}>convertor</Button>
+            <Button onClick={() => navigate('/convertor')}>convertor</Button>
           </li>
           <li>
             <Button onClick={() => navigate('/immer')}>Immer</Button>
@@ -42,6 +42,9 @@ const Layout = () => {
           </li>
           <li>
             <Button onClick={() => navigate('/childrenRender')}>Children Render</Button>
+          </li>
+          <li>
+            <Button onClick={() => navigate('/react19')}>react19</Button>
           </li>
         </ul>
       </nav>
