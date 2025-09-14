@@ -5,7 +5,7 @@ import Box from '../../components/Box'
 import Button from '../../components/Button'
 
 export default function Children3() {
-  const { state, setState } = React.useContext(context)
+  const [state, setState] = React.useContext(context)
   const increase = () => {
     setState(
       produce((draft) => {

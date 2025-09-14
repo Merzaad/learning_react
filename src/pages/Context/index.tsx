@@ -18,7 +18,7 @@ const Context = () => {
   return (
     <>
       <Box>
-        <context.Provider value={{ state, setState }}>
+        <context.Provider value={[state, setState]}>
           <Children1>
             <Children2>
               <Children3 />

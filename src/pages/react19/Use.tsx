@@ -1,5 +1,6 @@
 import React from 'react'
 import Box from '../../components/Box'
+import context from '../../context/context'
 
 const resolvePromise = new Promise<string>((resolve) => setTimeout(() => resolve('resolved'), 1000))
 const resolvePromise2 = new Promise<string>((resolve) =>
@@ -11,17 +12,16 @@ const resolvePromise2 = new Promise<string>((resolve) =>
 ) */
 
 export default function Use() {
+  const [state] = React.use(context)
   const result = React.use(resolvePromise)
   const result2 = React.use(resolvePromise2)
 
-  /* const error = React.use(rejectPromise) */
+  console.log(state)
   return (
     <>
-
       <Box>{result}</Box>
       <Box>{result2}</Box>
-
-      {/*  <Box>{error}</Box> */}
+      <Box>{JSON.stringify(state)}</Box>
     </>
   )
 }
