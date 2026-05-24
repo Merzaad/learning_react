@@ -1,8 +1,8 @@
 import * as React from 'react'
 import './index.css'
 import Box from '../../components/Box'
-import Use from './Use'
-import { ContextProvider } from '../../context/context'
+/* import Use from './asd'
+import AppProvider from '../../context/useAppContext' */
 
 const React19 = () => {
   return (
@@ -11,9 +11,9 @@ const React19 = () => {
         Use
         <br />
         <React.Suspense fallback={<>Fallback...</>}>
-          <ContextProvider>
+          {/* <AppProvider>
             <Use />
-          </ContextProvider>
+          </AppProvider> */}
         </React.Suspense>
       </Box>
     </div>

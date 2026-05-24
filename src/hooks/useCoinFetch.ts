@@ -1,7 +1,7 @@
 import React from 'react'
 import { CoinData, CoinDataHook } from '../types/coin'
 import { api } from '../api/api'
-const useCoinData = (coin: string): CoinDataHook => {
+const useCoinFetch = (coin: string): CoinDataHook => {
   const [ethData, setEthData] = React.useState<CoinData>({
     status: 'initial',
   })
@@ -21,4 +21,4 @@ const useCoinData = (coin: string): CoinDataHook => {
   }, [])
   return { ...ethData, fetch }
 }
-export { useCoinData }
+export { useCoinFetch }
